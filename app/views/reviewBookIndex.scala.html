@@ -13,73 +13,112 @@
         <header class="headerSection">
         		<div style="height: 2em;background-color: #00ccff;width=100%;" > </div>
         		<div class="searchbar row"> 
-        			<span class="col headerSpan span_4">Review Book</span>
-        			<div class="col span_2"> </div>
-        			<div class="col span_12 search_bar"> 
+        			<div class="col span_4">
+        				<span class="headerSpan">Review Book</span>
+        			</div>
+        			<div class="col span_14 search_bar"> 
         				<div class="row" style="padding-top: .5em;">
         					<div class="search-Icon col span_2"> </div>
         					<input class="col span_20" type="text" style="border: 0;height: 1.5em;outline: 0;font-size: 20px;" placeholder="Search Reviews" >
         				</div>
         			</div>
-        			<div class="col span_6" style="height: 1em;"> </div>
-        			<div class="col span_2" style="padding-top: .5em;">
+        			<div class="col span_4" style="height: 1em;"> </div>
+        			<div class="col span_2 signInSignOutContainer" style="padding-top: .5em;">
                          <div id="my-signin2"></div>
+                         <div class="signout-container" style="visibility: hidden;">
+                         	<span class="welcomeMessage"> </span>
+        					<span style="color: blue;cursor: pointer;" onclick="javascript:logout()"> Logout </span>
+                         </div>
                     </div>
         		</div>
-                <!--
-                <div class="signin">
-                                    <div id="my-signin2"></div>
-                                </div>-->
-                
         </header>
         
-    <!--
-        <div class="searchbar_section">
-                <div class="searchbar row">
-                    <div class="col span_4"> </div>
-    
-                    <div class="col span_14">
-                        <input class="search" type="text">
-                    </div>
-    
-                    <div class="col span_2 search_button">
-                        <span>SEARCH</span>
-                    </div>
-    
-                    <div class="col span_4"> </div>
-                
-                </div>
-            </div>
-            -->
-    
-        
+        <div style="height: 1em;width: 100%"> </div>
         <div class="MainBody row">
-        	<div class="col span_4"> </div>
-        	<div class="col span_16 trending_reviews"> </div>
-        	<div class="col span_4"> </div>
+        	<div class="col span_2 lef_nav" style="min-height: 30em">
+				<div> <a href="javascript:showPostReviewSection()"> Post Review </a>  </div>
+				<div> <a> My Reviews </a> </div>
+				<div> <a> My Profile </a> </div>
+        	</div>
+        	<div class="col span_18 trending_reviews" style="min-height: 30em"> </div>
+        	<div class="col span_4" style="min-height: 30em"> </div>
         </div>
         
         
         <script type="text/template" id="trending-reviews-template">
             <div class="review-by-div">
-                <span> Review By : <%= reviewBy %></span>
-                <span> || </span>
-                <span> Review Time : <%= reviewTime %></span>
-                <div class="review-details-div">
-                <span> Review On : <%= reviewItem %></span>
-                </div>
-                <div class="reviews">
-                    <h2> <%= reviewHeading %> </h2>
-                    <p> <%= reviewBody %> </p>
+            	<div style="margin-left: 15px"> Product : <%= reviewItem %></div>
+                <span style="margin-left: 15px"> Review By : <%= reviewBy %> || Review Time : <%= reviewTime %></span>
+                <br> <br>
+            	<div style="font-weight: bold;margin-left: 15px"> <%= reviewHeading %> </div>
+            	<p style="margin-left: 15px;"> <%= reviewBody %> </p>
                 </div>
             </div>
         </script>
         
-        
+        <script type="text/template" id="post-review-template">
+            <div class="post-review-div">
+            	<form name="post-review-form">
+	            	<div class="row">
+	            		<label class="col span_4"></label>
+	            		<label class="col span_4"> Title: </label>
+	                	<input class="col span_10" type="text" name="title"/>
+	                	<label class="col span_6"></label>
+	            	</div>
+	            	<div class="row">
+	            		<label class="col span_4"></label>
+	            		<label class="col span_4"> Product Name: </label>
+	                	<input class="col span_10" type="text" name="productName"/>
+	                	<label class="col span_6"></label>
+	            	</div>
+	            	<div class="row">
+	            		<label class="col span_4"></label>
+	            		<label class="col span_4"> Comments: </label>
+	                	<textarea class="col span_10" type="text" name="comments"/>
+	                	<label class="col span_6"></label>
+	            	</div>
+	            	<div class="row">
+	            		<label class="col span_4"></label>
+	            		<label class="col span_4"> Upload Bill: </label>
+	                	<input class="col span_10" type="file" name="bill"/>
+	                	<label class="col span_6"></label>
+	            	</div>
+            	</form>
+            	<div class="row">
+	            		<label class="col span_18"></label>
+	            		<button class="col span_2" type="submit" form="post-review-form" value="Submit">Submit</button>
+	            		<label class="col span_4"></label>
+	            </div>
+            	
+            </div>
+        </script>
         
             <script type="text/javascript">
                 function onSuccess(googleUser) {
-                    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+                	var profile = googleUser.getBasicProfile();
+                	var loginInfo = new LoginModel();
+                	loginInfo.save({fullName:profile.getName(),
+                					emailId:profile.getEmail()},{
+                		success : function(){
+                			var signInSignOutContainer = $('.signInSignOutContainer');
+                			signInSignOutContainer.find('#my-signin2').css('visibility','hidden');
+                			signInSignOutContainer.find('.signout-container').css('visibility','visible');
+                			signInSignOutContainer.find('.welcomeMessage').html('Welcome '+profile.getName());
+                		},
+                		error : function(){
+                			alert(' :( Failed to Login. Please check your credentials and try again :)');
+                		}
+                	});
+                	
+                }
+                
+                function logout(){
+                	var auth2 = gapi.auth2.getAuthInstance();
+				    auth2.signOut().then(function () {
+				      	var signInSignOutContainer = $('.signInSignOutContainer');
+				      	signInSignOutContainer.find('#my-signin2').css('visibility','visible');
+                		signInSignOutContainer.find('.signout-container').css('visibility','hidden');
+				    });
                 }
 
                 function onFailure(error) {
@@ -103,8 +142,13 @@
         <script src="@routes.Assets.versioned("javascripts/node_modules/backbone/backbone.js")"></script>
         
         
-        <script src="@routes.Assets.versioned("javascripts/view/app.js")"></script>
-        <script src="@routes.Assets.versioned("javascripts/view/login.js")"></script>
-        <script src="@routes.Assets.versioned("javascripts/model/logout.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/app.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/view/PostReviewView.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/view/ReviewView.js")"></script>
+        
+        <script src="@routes.Assets.versioned("javascripts/model/LoginModel.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/model/PostReviewModel.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/model/ReviewModel.js")"></script>
+        
 </body>
 </html>

@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Tangerine);
+@import url(http://fonts.googleapis.com/css?family=Tangerine|Roboto:500);
 
 
 .headerSection {
@@ -11,27 +11,6 @@
 	font-size: 50px;
 	font-family: 'Tangerine', serif;
 }
-/*
-.signin div {
-	float: right;
-}
-
-.searchbar_section {
-	height: 12em;
-	background: url("../images/searchbar-background.jpg") no-repeat scroll 0 0 #fefefe !important;
-	background-repeat: no-repeat;
-	width: 100%;
-}
-.searchbar {
-	width: 100%;
-	position: relative;
-	top: 30%;
-	display: block;
-}
-
-.searchbar div {
-	height: 3em;
-}*/
 
 .search-Icon{
 	background: url("../images/search_icon.png") no-repeat scroll 0 0 transparent !important;
@@ -43,20 +22,57 @@
   	border-bottom: 1px solid #dedede;
 }
 
-/*
-.search_button {
-	color: #fff;
-	background-color: #bb101d;
-	border-radius: 0 5px 5px 0;
+.MainBody{
+	padding-top: 2em;
+	background-color: #F0F0F0;
+	border-radius: 15px;
+}
+ 
+.lef_nav div a:hover{
+	 border-bottom: 1px solid #000;
+	 font-size : 16px;
 }
 
-.search_button span {
-	font-weight: bold;
-	font-size: 20px;
-	top: 20%;
-	text-align: center;
-	display: block;
-	position: relative;
-}*/
+.lef_nav div a:active {
+	font-weight: bold; 
+	border-bottom: 1px solid #100100;
+}
 
+.lef_nav div a{
+	cursor: pointer;
+	text-align: center;
+	font-family: 'Roboto',sans-serif;
+	font-size : 14px;
+	color: #191970;
+	text-decoration: none;
+}
+
+
+.lef_nav div{
+	padding: 2em 0 2em 0;
+}
+
+.post-review-div input,label,textarea {
+	margin-top: 2em;
+}
+
+.post-review-div input{
+	border-bottom: 1px solid;
+	border:  0px;
+	height: 2em;
+	font-size: 16px;
+}
+.post-review-div textarea{
+	height: 4em;
+	border-bottom: 1px solid;
+	border:  0px;
+	font-size: 16px;
+}
+
+.review-by-div{
+  border: 1px solid;
+  border-radius: 15px;
+  padding-top: 2em;
+  background-color: white;
+}
 

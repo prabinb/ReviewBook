@@ -3,13 +3,22 @@ var ReviewView = Backbone.View.extend({
 		trending_reviews_template : _.template( $('#trending-reviews-template').html() ),
 		initialize: function(){
 		},
-		events: {
-		},
-		renderReviews : function(reviews){
-			if(reviews && reviews.length){
-				for(var i=0;i<reviews.length;i++){
-					
+		renderReviews : function(models){
+			var self = this;
+			self.$el.empty();
+			if(models && models.length>0){
+				for(var i=0;i<models.length;i++){
+					var values = {
+							reviewBy : models[i].attributes.user.fullname,
+							reviewTime : '07-03-2015',
+							reviewItem : models[i].attributes.productName,
+							reviewHeading : models[i].attributes.reviewTitle,
+							reviewBody : models[i].attributes.reviewContent
+					}
+					self.$el.append(self.trending_reviews_template(values));
 				}
 			}
+		},
+		events: {
 		}
 });
