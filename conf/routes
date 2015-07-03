@@ -11,3 +11,4 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 POST  /saveUserInfo                 controllers.Login.login()
 GET   /getAllReviews				controllers.Reviews.getAllReviews()
+POST  /saveReview					controllers.Reviews.saveReview()
