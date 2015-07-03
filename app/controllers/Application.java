@@ -6,7 +6,7 @@ import play.mvc.Result;
 public class Application extends Controller {
 
   public Result index() {
-    return ok(views.html.index.render("Your new application is ready 2 ."));
+    return ok(views.html.reviewBookIndex.render("ReviewBook"));
   }
 
   public Result saveUserInfo() {

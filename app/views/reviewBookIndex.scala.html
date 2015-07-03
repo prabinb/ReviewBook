@@ -1,0 +1,46 @@
+@(name:String)
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="google-signin-client_id" content="532543530058-9kjr88ddjfqu3vtbkf2d0kg91k1o1ppo.apps.googleusercontent.com">
+<title>Insert title here</title>
+</head>
+<body>
+        <header style="border-bottom:1px solid;height:4em">
+            <div style="float:right;"> </div>
+        </header>
+        
+        <div class="review_body">
+        </div>
+        
+        
+        <script type="text/template" id="reviews-template">
+            <div>
+                <h2><%= title %></h2>
+            </div>
+            <p><%= description %></p>
+        </script>
+        
+        <script type="text/template" id="loginHeader-template">
+            <div class="g-signin2" data-onsuccess="onSignIn" >Sign-In</div>
+        </script>
+        
+        <script type="text/template" id="logoutHeader-template">
+            <div class="logout-div">
+                <span>Welcome <%= name %></span>
+                <button>signout</button>
+            </div>
+        </script>
+        
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script src="@routes.Assets.versioned("javascripts/node_modules/jquery/dist/jquery.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/node_modules/underscore/underscore.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/node_modules/backbone/backbone.js")"></script>
+        
+        
+        <script src="@routes.Assets.versioned("javascripts/view/app.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/view/login.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/model/logout.js")"></script>
+</body>
+</html>
