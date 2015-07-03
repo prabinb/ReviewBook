@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.User;
 import model.UserReviews;
+import model.form.PostReviewForm;
 
 public interface UserService {
 	
@@ -12,5 +13,7 @@ public interface UserService {
 List<UserReviews> getUserReviews(String emailId);
 
 List<UserReviews> getAllReviews();
+
+boolean saveUserReview(PostReviewForm reviewForm);
 
 }
