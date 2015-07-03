@@ -16,18 +16,18 @@ public class Login extends Controller {
   public Result login() {
     Form<UserForm> form = Form.form(UserForm.class).bindFromRequest();
     if (form.hasErrors()) {
-      return badRequest(Json.toJson(form));
+      return badRequest(form.errorsAsJson());
     } else {
       UserForm userForm = form.get();
       if (userService.create(userForm.getUser())) {
         return ok(Json.toJson(new APIResult("User created successfully.")));
+      } else {
+        return ok(Json.toJson(userService.getUserReviews(userForm.getUser().getEmailId())));
       }
-      else 
-      {
-    	  return ok(Json.toJson(userService.getUserReviews(userForm.getUser().getEmailId())));
-      }
-   /*   return internalServerError(Json.toJson(new APIResult(
-          "User with same name exists. Try with another name.")));*/
+      /*
+       * return internalServerError(Json.toJson(new APIResult(
+       * "User with same name exists. Try with another name.")));
+       */
     }
   }
 }

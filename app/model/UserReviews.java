@@ -11,34 +11,40 @@ import javax.persistence.UniqueConstraint;
 import com.avaje.ebean.Model;
 
 @Entity
-@Table(name = "user_reviews", uniqueConstraints = { @UniqueConstraint(columnNames = { "email_id", "product_name" }) })
-public class UserReviews  extends Model{
+@Table(name = "user_reviews", uniqueConstraints = {@UniqueConstraint(columnNames = {"email_id",
+    "product_name"})})
+public class UserReviews extends Model {
 
-	String emailId;
-	String productName;
-	String reviewContent;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "email_id", referencedColumnName = "email_id")
-	public String getEmailId() {
-		return emailId;
-	}
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
-	@Column(name = "product_name")
-	public String getProductName() {
-		return productName;
-	}
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-	@Column(name="review_content")
-	public String getReviewContent() {
-		return reviewContent;
-	}
-	public void setReviewContent(String reviewContent) {
-		this.reviewContent = reviewContent;
-	}	
-	
+  User user;
+  String productName;
+  String reviewContent;
+
+  @ManyToOne(cascade = CascadeType.REMOVE)
+  @JoinColumn(name = "email_id", referencedColumnName = "email_id", table = "user")
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
+
+  @Column(name = "product_name")
+  public String getProductName() {
+    return productName;
+  }
+
+  public void setProductName(String productName) {
+    this.productName = productName;
+  }
+
+  @Column(name = "review_content")
+  public String getReviewContent() {
+    return reviewContent;
+  }
+
+  public void setReviewContent(String reviewContent) {
+    this.reviewContent = reviewContent;
+  }
+
 }
