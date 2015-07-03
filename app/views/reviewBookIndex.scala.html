@@ -5,14 +5,27 @@
 <meta charset="ISO-8859-1">
 <meta name="google-signin-client_id" content="532543530058-9kjr88ddjfqu3vtbkf2d0kg91k1o1ppo.apps.googleusercontent.com">
 <title>Review Book</title>
-<link href='http://fonts.googleapis.com/css?family=Lobster|Shadows+Into+Light|Gloria+Hallelujah|Chewy|Bangers|Kaushan+Script' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/main.css")">
 <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/responsive.gs.24col.css")">
 </head>
 <body>
     
         <header class="headerSection">
-                <span class="headerSpan">Review Book</span>
+        		<div style="height: 2em;background-color: #00ccff;width=100%;" > </div>
+        		<div class="searchbar row"> 
+        			<span class="col headerSpan span_4">Review Book</span>
+        			<div class="col span_2"> </div>
+        			<div class="col span_12 search_bar"> 
+        				<div class="row" style="padding-top: .5em;">
+        					<div class="search-Icon col span_2"> </div>
+        					<input class="col span_20" type="text" style="border: 0;height: 1.5em;outline: 0;font-size: 20px;" placeholder="Search Reviews" >
+        				</div>
+        			</div>
+        			<div class="col span_6" style="height: 1em;"> </div>
+        			<div class="col span_2" style="padding-top: .5em;">
+                         <div id="my-signin2"></div>
+                    </div>
+        		</div>
                 <!--
                 <div class="signin">
                                     <div id="my-signin2"></div>
@@ -20,29 +33,34 @@
                 
         </header>
         
+    <!--
         <div class="searchbar_section">
-            <div class="searchbar row">
-                <div class="col span_4"> </div>
-
-                <div class="col span_14">
-                    <input class="search" type="text">
+                <div class="searchbar row">
+                    <div class="col span_4"> </div>
+    
+                    <div class="col span_14">
+                        <input class="search" type="text">
+                    </div>
+    
+                    <div class="col span_2 search_button">
+                        <span>SEARCH</span>
+                    </div>
+    
+                    <div class="col span_4"> </div>
+                
                 </div>
-
-                <div class="col span_2 search_button">
-                    <span>SEARCH</span>
-                </div>
-
-                <div class="col span_6"> </div>
-            
             </div>
+            -->
+    
+        
+        <div class="MainBody row">
+        	<div class="col span_4"> </div>
+        	<div class="col span_16 trending_reviews"> </div>
+        	<div class="col span_4"> </div>
         </div>
         
         
-        <div class="MainBody">
-        </div>
-        
-        
-        <!--<script type="text/template" id="reviews-template">
+        <script type="text/template" id="trending-reviews-template">
             <div class="review-by-div">
                 <span> Review By : <%= reviewBy %></span>
                 <span> || </span>
@@ -55,7 +73,7 @@
                     <p> <%= reviewBody %> </p>
                 </div>
             </div>
-        </script>-->
+        </script>
         
         
         
