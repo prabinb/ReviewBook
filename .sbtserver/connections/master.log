@@ -1,0 +1,28 @@
+New log file opened at Fri Jul 03 11:40:29 IST 2015 by 8394@shankar-admin
+Taking next connection to: 56615
+New client attempting to connect on port: 46968-56615
+  Address = /172.16.49.36:56615
+This client on port 46968 has uuid 028020ef-cdfa-46b9-818e-a795ccd827f7 configName activator humanReadableName Activator protocolVersion 3 featureTags Vector()
+Connected Clients: activator-028020ef-cdfa-46b9-818e-a795ccd827f7
+Taking next connection to: 56615
+New client attempting to connect on port: 46969-56615
+  Address = /172.16.49.36:56615
+Handshake exception on socket: 46969
+sbt.impl.ipc.HandshakeException: Unable to perform handshake
+	at sbt.impl.ipc.Peer.handshake(IPC.scala:46)
+	at sbt.impl.ipc.MultiClientServer.<init>(IPC.scala:150)
+	at sbt.server.SbtServerSocketHandler$$anon$1.run(SbtServerSocketHandler.scala:43)
+Caused by: java.io.EOFException
+	at java.io.DataInputStream.readInt(DataInputStream.java:392)
+	at sbt.impl.ipc.Peer.receive(IPC.scala:95)
+	at sbt.impl.ipc.Peer.handshake(IPC.scala:49)
+	... 2 more
+Taking next connection to: 56615
+New client attempting to connect on port: 46970-56615
+  Address = /172.16.49.36:56615
+This client on port 46970 has uuid 0e3bfcd5-94b7-4ebc-a58d-4f2f3ae38b8e configName activator humanReadableName Activator protocolVersion 3 featureTags Vector()
+Connected Clients: activator-028020ef-cdfa-46b9-818e-a795ccd827f7, activator-0e3bfcd5-94b7-4ebc-a58d-4f2f3ae38b8e
+Taking next connection to: 56615
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 56615
