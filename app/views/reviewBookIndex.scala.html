@@ -4,36 +4,82 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta name="google-signin-client_id" content="532543530058-9kjr88ddjfqu3vtbkf2d0kg91k1o1ppo.apps.googleusercontent.com">
-<title>Insert title here</title>
+<title>Review Book</title>
+<link href='http://fonts.googleapis.com/css?family=Lobster|Shadows+Into+Light|Gloria+Hallelujah|Chewy|Bangers|Kaushan+Script' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/main.css")">
+<link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/responsive.gs.24col.css")">
 </head>
 <body>
-        <header style="border-bottom:1px solid;height:4em">
-            <div style="float:right;"> </div>
+    
+        <header class="headerSection">
+                <span class="headerSpan">Review Book</span>
+                <!--
+                <div class="signin">
+                                    <div id="my-signin2"></div>
+                                </div>-->
+                
         </header>
         
-        <div class="review_body">
+        <div class="searchbar_section">
+            <div class="searchbar row">
+                <div class="col span_4"> </div>
+
+                <div class="col span_14">
+                    <input class="search" type="text">
+                </div>
+
+                <div class="col span_2 search_button">
+                    <span>SEARCH</span>
+                </div>
+
+                <div class="col span_6"> </div>
+            
+            </div>
         </div>
         
         
-        <script type="text/template" id="reviews-template">
-            <div>
-                <h2><%= title %></h2>
+        <div class="MainBody">
+        </div>
+        
+        
+        <!--<script type="text/template" id="reviews-template">
+            <div class="review-by-div">
+                <span> Review By : <%= reviewBy %></span>
+                <span> || </span>
+                <span> Review Time : <%= reviewTime %></span>
+                <div class="review-details-div">
+                <span> Review On : <%= reviewItem %></span>
+                </div>
+                <div class="reviews">
+                    <h2> <%= reviewHeading %> </h2>
+                    <p> <%= reviewBody %> </p>
+                </div>
             </div>
-            <p><%= description %></p>
+        </script>-->
+        
+        
+        
+            <script type="text/javascript">
+                function onSuccess(googleUser) {
+                    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+                }
+
+                function onFailure(error) {
+                    console.log(error);
+                }
+
+                function renderButton() {
+                    gapi.signin2.render('my-signin2', {
+                        'width' : 100,
+                        'theme' : 'dark',
+                        'float' : 'right',
+                        'onsuccess' : onSuccess,
+                        'onfailure' : onFailure
+                    });
+                }
         </script>
         
-        <script type="text/template" id="loginHeader-template">
-            <div class="g-signin2" data-onsuccess="onSignIn" >Sign-In</div>
-        </script>
-        
-        <script type="text/template" id="logoutHeader-template">
-            <div class="logout-div">
-                <span>Welcome <%= name %></span>
-                <button>signout</button>
-            </div>
-        </script>
-        
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
         <script src="@routes.Assets.versioned("javascripts/node_modules/jquery/dist/jquery.js")"></script>
         <script src="@routes.Assets.versioned("javascripts/node_modules/underscore/underscore.js")"></script>
         <script src="@routes.Assets.versioned("javascripts/node_modules/backbone/backbone.js")"></script>

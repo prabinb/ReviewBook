@@ -1,21 +1,20 @@
 package model;
 
-import play.db.ebean.*;
-import play.data.validation.Constraints.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-import javax.persistence.*;
+import play.db.ebean.Model;
 
 
 @Entity
-public class UserDetails extends  Model {
+public class UserDetails extends Model {
 
 
-    @Id
-    String emailId;
-    String firstname;
-    String lastname;
+  @Id
+  String emailId;
+  String firstname;
+  String lastname;
 
 
 
 }
-
