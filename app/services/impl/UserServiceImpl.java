@@ -1,6 +1,9 @@
 package services.impl;
 
+import java.util.List;
+
 import model.User;
+import model.UserReviews;
 import services.UserService;
 
 import com.avaje.ebean.Ebean;
@@ -16,4 +19,10 @@ public class UserServiceImpl implements UserService {
     }
     return false;
   }
+
+	@Override
+	public List<UserReviews> getUserReviews(String emailId) {
+		return Ebean.find(UserReviews.class).where().eq("emailId", emailId).findList();
+
+	}
 }

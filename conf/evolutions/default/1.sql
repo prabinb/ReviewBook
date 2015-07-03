@@ -4,13 +4,10 @@
 # --- !Ups
 
 create table User (
-  emailid                   varchar(255) not null,
-  fullname                  varchar(255),
-  constraint pk_User primary key (emailid))
+  email_id                   varchar(255) not null,
+  full_name                  varchar(255),
+  constraint pk_User primary key (email_id))
 ;
-
-
-
 
 # --- !Downs
 

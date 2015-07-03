@@ -22,8 +22,12 @@ public class Login extends Controller {
       if (userService.create(userForm.getUser())) {
         return ok(Json.toJson(new APIResult("User created successfully.")));
       }
-      return internalServerError(Json.toJson(new APIResult(
-          "User with same name exists. Try with another name.")));
+      else 
+      {
+    	  return ok(Json.toJson(userService.getUserReviews(userForm.getUser().getEmailId())));
+      }
+   /*   return internalServerError(Json.toJson(new APIResult(
+          "User with same name exists. Try with another name.")));*/
     }
   }
 }
