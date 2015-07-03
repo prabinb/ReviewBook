@@ -18,7 +18,8 @@ public class UserReviews extends Model {
   User user;
   String productName;
   String reviewContent;
-
+  String reviewTitle;
+  
   @ManyToOne(cascade = CascadeType.REMOVE)
   @JoinColumn(name = "email_id", referencedColumnName = "email_id", table = "user")
   public User getUser() {
@@ -46,5 +47,13 @@ public class UserReviews extends Model {
   public void setReviewContent(String reviewContent) {
     this.reviewContent = reviewContent;
   }
+@Column(name = "review_title")
+public String getReviewTitle() {
+	return reviewTitle;
+}
+
+public void setReviewTitle(String reviewTitle) {
+	this.reviewTitle = reviewTitle;
+}
 
 }

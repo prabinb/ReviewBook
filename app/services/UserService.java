@@ -11,4 +11,6 @@ public interface UserService {
   
 List<UserReviews> getUserReviews(String emailId);
 
+List<UserReviews> getAllReviews();
+
 }

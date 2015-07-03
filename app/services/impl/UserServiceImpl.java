@@ -25,4 +25,10 @@ public class UserServiceImpl implements UserService {
 		return Ebean.find(UserReviews.class).where().eq("emailId", emailId).findList();
 
 	}
+	
+	@Override
+	public List<UserReviews> getAllReviews() {
+		return Ebean.find(UserReviews.class).findList();
+
+	}
 }
