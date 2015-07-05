@@ -67,6 +67,15 @@
 	border-bottom: 1px solid;
 	font-size: 16px;
 	 width: 60%;
+	 height: 4em;
+}
+
+.post-review-div  input[type="radio"]{
+	height: 1em;
+}
+
+.post-review-div label{
+	white-space: nowrap;
 }
 
 .form-group{

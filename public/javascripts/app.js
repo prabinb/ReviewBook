@@ -6,6 +6,7 @@ $(function(){
 
 
 function loadTrendingReviews() {
+	resetNavigations();
 	var reviewModelList = new ReviewModelList();
 	reviewModelList.fetch({
 		success : function(model, response, options){
@@ -14,12 +15,20 @@ function loadTrendingReviews() {
 	});
 }
 
+function resetNavigations(){
+	$('.lef_nav').find('a').removeClass('active');
+}
+
 function bindEvents(){
 	bindNavigationEvents();
 }
 
 function bindNavigationEvents(){
 	$('.lef_nav a').on("click", function(e) {
+		if(!$('meta[name=userName]').attr("content")){
+			alert('Please Log-In to continue');
+			return;
+		}
 		var $this = $(this);
 		$this.addClass('active');
 		switch($this.attr('action')){

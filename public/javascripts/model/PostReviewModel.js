@@ -2,9 +2,9 @@ var PostReviewModel = Backbone.Model.extend({
 	urlRoot: '/postReview',
 	  defaults: {
 		  emailId: '',
-		  title : '',
+		  reviewTitle : '',
 		  productName : '',
-		  comments : '',
-		  bill : ''
+		  reviewContent : '',
+		  recommend : true
 		}
 });
