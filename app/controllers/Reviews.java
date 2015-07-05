@@ -45,6 +45,6 @@ public class Reviews extends Controller {
     if (productName == null) {
       return badRequest("Invalid Product");
     }
-    return ok(Json.toJson(userService.getAllUserReviews(productName)));
+    return ok(Json.toJson(userService.getAllProductReviews(productName)));
   }
 }
