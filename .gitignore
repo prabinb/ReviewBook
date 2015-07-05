@@ -7,3 +7,5 @@ target
 /.settings
 /.sbtserver
 /RUNNING_PID
+.metadata
+RemoteSystemsTempFiles
