@@ -42,7 +42,7 @@ public class Reviews extends Controller {
         review.setImageName(filePart.getFilename());
         review.setImageData(imageData);
       }
-      if (userService.saveUserReview(reviewForm.getReview())) {
+      if (userService.saveUserReview(review)) {
 
         return ok(Json.toJson(new APIResult("Saved  successfully.")));
       } else {

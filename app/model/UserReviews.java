@@ -83,7 +83,7 @@ public class UserReviews extends Model {
     this.reviewId = reviewId;
   }
 
-  @Column(name = "image_name", unique = false, nullable = false, length = 100)
+  @Column(name = "image_name", unique = false, nullable = true, length = 100)
   public String getImageName() {
     return imageName;
   }
@@ -92,7 +92,7 @@ public class UserReviews extends Model {
     this.imageName = imageName;
   }
 
-  @Column(name = "image_data", unique = false, nullable = false, length = 100000)
+  @Column(name = "image_data", unique = false, nullable = false, length = 55535)
   public byte[] getImageData() {
     return imageData;
   }
