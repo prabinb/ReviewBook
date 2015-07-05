@@ -2,6 +2,8 @@ package services.impl;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import model.PostedReviewsInterest;
 import model.User;
 import model.UserReviews;
@@ -66,5 +68,16 @@ public class UserServiceImpl implements UserService {
 			return Boolean.FALSE;
 		}
 	}
+
+@Override
+public List<UserReviews> getAllReviews(String search) {
+	if(StringUtils.isEmpty(search)){
+		List<UserReviews> reviews = Ebean.find(UserReviews.class).findList();
+		return reviews;
+	}else{
+		List<UserReviews> reviews = Ebean.find(UserReviews.class).where().or(Expr.like("review_title", search), Expr.like("product_name", search)).findList();
+		return reviews;
+	}
+}
 
 }

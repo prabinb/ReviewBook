@@ -14,3 +14,5 @@ GET   /getAllUserReviews/:emailId	controllers.Reviews.getAllUserReviews(emailId:
 GET   /getAllProductReviews/:productName			controllers.Reviews.getAllProductReviews(productName:String)
 POST  /postReview					controllers.Reviews.postReview()
 POST  /postedReviewsInterest		controllers.PostedReviewsInterest.saveReviewInterest()
+GET	  /allReviews					controllers.Reviews.getAllReviews()
+GET	  /searchReviews/:searchString	controllers.Reviews.searchReviews(searchString:String)

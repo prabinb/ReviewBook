@@ -17,5 +17,7 @@ public interface UserService {
   boolean saveUserReview(UserReviews reviews);
   
   Boolean savePostedReviewsInterest(PostedReviewsInterestForm postedReviewsInterestForm);
+  
+  List<UserReviews> getAllReviews(String search);
 
 }
