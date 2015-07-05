@@ -3,6 +3,13 @@
 
 # --- !Ups
 
+create table posted_reviews_interest (
+  review_id                 integer,
+  email_id                  varchar(255),
+  helpful                   tinyint(1) default 0,
+  constraint uq_posted_reviews_interest_1 unique (email_id,review_id))
+;
+
 create table user (
   email_id                  varchar(255) not null,
   full_name                 varchar(255),
@@ -30,6 +37,8 @@ create index ix_user_reviews_user_1 on user_reviews (email_id);
 # --- !Downs
 
 SET FOREIGN_KEY_CHECKS=0;
+
+drop table posted_reviews_interest;
 
 drop table user;
 
