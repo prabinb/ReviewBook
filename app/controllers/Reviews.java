@@ -1,6 +1,7 @@
 package controllers;
 
 import model.User;
+import model.UserReviews;
 import model.form.UserReviewForm;
 import play.data.Form;
 import play.libs.Json;
@@ -18,11 +19,21 @@ public class Reviews extends Controller {
 
   public Result postReview() {
     Form<UserReviewForm> form = Form.form(UserReviewForm.class).bindFromRequest();
+    // FilePart filePart = request().body().asMultipartFormData().getFile("receipt");
     if (form.hasErrors()) {
       return badRequest(form.errorsAsJson());
     } else {
       UserReviewForm reviewForm = form.get();
-      if (userService.saveUserReview(reviewForm.getReview())) {
+      UserReviews review = reviewForm.getReview();
+      /*
+       * if (filePart != null) { File file = filePart.getFile();; byte[] imageData = new byte[(int)
+       * file.length()]; try { FileInputStream fileInputStream = new FileInputStream(file);
+       * fileInputStream.read(imageData); fileInputStream.close(); } catch (Exception e) {
+       * e.printStackTrace(); } review.setImageName(filePart.getFilename());
+       * review.setImageData(imageData); }
+       */
+      if (userService.saveUserReview(review)) {
+
         return ok(Json.toJson(new APIResult("Saved  successfully.")));
       } else {
         return ok(Json.toJson(new APIResult("Could be some Problem while saving")));

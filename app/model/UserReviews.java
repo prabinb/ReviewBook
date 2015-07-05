@@ -3,6 +3,8 @@ package model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -15,11 +17,18 @@ import com.avaje.ebean.Model;
     "product_name"})})
 public class UserReviews extends Model {
 
+  @Id
+  @GeneratedValue
+  @Column(name = "review_id")
+  int reviewId;
   User user;
   String productName;
   String reviewContent;
   String reviewTitle;
   boolean recommend;
+
+  // String imageName;
+  // byte[] imageData;
 
   @ManyToOne(cascade = CascadeType.REMOVE)
   @JoinColumn(name = "email_id", referencedColumnName = "email_id", table = "user")
@@ -40,7 +49,7 @@ public class UserReviews extends Model {
     this.productName = productName;
   }
 
-  @Column(name = "review_content")
+  @Column(name = "review_content", columnDefinition = "TEXT")
   public String getReviewContent() {
     return reviewContent;
   }
@@ -67,4 +76,23 @@ public class UserReviews extends Model {
     this.recommend = recommend;
   }
 
+  public int getReviewId() {
+    return reviewId;
+  }
+
+  public void setReviewId(int reviewId) {
+    this.reviewId = reviewId;
+  }
+
+  /*
+   * @Column(name = "image_name", unique = false, nullable = true, length = 100) public String
+   * getImageName() { return imageName; }
+   * 
+   * public void setImageName(String imageName) { this.imageName = imageName; }
+   * 
+   * @Column(name = "image_data", unique = false, nullable = false, length = 55535) public byte[]
+   * getImageData() { return imageData; }
+   * 
+   * public void setImageData(byte[] imageData) { this.imageData = imageData; }
+   */
 }

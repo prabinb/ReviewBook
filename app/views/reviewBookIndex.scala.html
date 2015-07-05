@@ -5,6 +5,7 @@
 <meta charset="ISO-8859-1">
 <meta name="google-signin-client_id" content="532543530058-9kjr88ddjfqu3vtbkf2d0kg91k1o1ppo.apps.googleusercontent.com">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="userName" content=""/>
 <title>Review Book</title>
 <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/main.css")">
 <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/bootstrap.css")">
@@ -58,11 +59,11 @@
         
         <script type="text/template" id="post-review-template">
             <div class="post-review-div">
-            	<form class="form-horizontal" name="post-review-form" role="form">
+            	<form class="form-horizontal" name="post-review-form" method="post"  action="postReview">
             		<div class="form-group">
             			<label class="control-label col-sm-2" for="title">Title:</label>
 					    <div class="col-sm-10">
-					      <input type="text" name="title" placeholder="Enter Title of your review"/>
+					      <input type="text" name="reviewTitle" placeholder="Enter Title of your review"/>
 					    </div>
             		</div>
             		
@@ -76,20 +77,34 @@
             		<div class="form-group">
             			<label class="control-label col-sm-2" for="comments">Comments:</label>
 					    <div class="col-sm-10">
-					      <textarea type="text" name="comments" placeholder="Enter Your Valuable Comments"/>
+					      <textarea type="text" name="reviewContent" placeholder="Enter Your Valuable Comments"/>
 					    </div>
             		</div>
             		
-            		<div class="form-group">
-            			<label class="control-label col-sm-2" for="bill">Upload Receipt:</label>
-					    <div class="col-sm-10">
-					      <input type="file" name="bill"/>
-					    </div>
-            		</div>
+            		<!--
+					<div class="form-group">
+											<label class="control-label col-sm-2" for="bill">Upload Receipt:</label>
+											<div class="col-sm-10">
+											  <input type="file" name="bill"/>
+											</div>
+										</div>-->
+					
+            		
+            		<div class="form-group radio">
+						<div class="col-sm-offset-1 col-sm-5">
+								<label style="color:green" ><input type="radio" name="recommend" checked="checked" value="true">Recommend</label>
+						</div>
+						
+						<div class="col-sm-5">
+								<label style="color:red"><input type="radio" name="recommend" value="false">Doesnot Recommend</label>
+						</div>
+					</div>
+            		
+            		<input type="hidden" name="emailId" value="<%= emailId %>"/>
             		
             		<div class="form-group"> 
     					<div class="col-sm-offset-2 col-sm-10">
-     					 <button type="submit" class="btn btn-default" form="post-review-form">Submit</button>
+     					 <div class="btn btn-default">Submit</div>
     					</div>
   					</div>
  	           	</form>
@@ -99,6 +114,7 @@
             <script type="text/javascript">
                 function onSuccess(googleUser) {
                 	var profile = googleUser.getBasicProfile();
+                	$('meta[name=userName]').attr("content",profile.getEmail());
                 	var loginInfo = new LoginModel();
                 	loginInfo.save({fullName:profile.getName(),
                 					emailId:profile.getEmail()},{
@@ -116,6 +132,7 @@
                 }
                 
                 function logout(){
+                	$('meta[name=userName]').attr("content","");
                 	var auth2 = gapi.auth2.getAuthInstance();
 				    auth2.signOut().then(function () {
 				      	var signInSignOutContainer = $('.signInSignOutContainer');
@@ -141,6 +158,7 @@
         
         <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
         <script src="@routes.Assets.versioned("javascripts/node_modules/jquery/dist/jquery.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/node_modules/jquery/dist/jquery.form.js")"></script>
         <script src="@routes.Assets.versioned("javascripts/node_modules/underscore/underscore.js")"></script>
         <script src="@routes.Assets.versioned("javascripts/node_modules/backbone/backbone.js")"></script>
         

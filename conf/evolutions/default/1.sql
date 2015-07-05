@@ -17,12 +17,14 @@ create table user (
 ;
 
 create table user_reviews (
+  review_id                 integer auto_increment not null,
   email_id                  varchar(255),
   product_name              varchar(255),
-  review_content            varchar(255),
+  review_content            TEXT,
   review_title              varchar(255),
   is_recommended            tinyint(1) default 0,
-  constraint uq_user_reviews_1 unique (email_id,product_name))
+  constraint uq_user_reviews_1 unique (email_id,product_name),
+  constraint pk_user_reviews primary key (review_id))
 ;
 
 alter table user_reviews add constraint fk_user_reviews_user_1 foreign key (email_id) references user (email_id) on delete restrict on update restrict;
