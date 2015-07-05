@@ -13,7 +13,9 @@ var ReviewView = Backbone.View.extend({
 							reviewTime : '07-03-2015',
 							reviewItem : models[i].attributes.productName,
 							reviewHeading : models[i].attributes.reviewTitle,
-							reviewBody : models[i].attributes.reviewContent
+							reviewBody : models[i].attributes.reviewContent,
+							recommendVisible : models[i].attributes.recommend ? 'block' : 'none',
+							notRecommendVisible : models[i].attributes.recommend ? 'none' : 'block',
 					}
 					self.$el.append(self.trending_reviews_template(values));
 				}

@@ -48,6 +48,21 @@
         
         <script type="text/template" id="trending-reviews-template">
             <div class="review-by-div panel">
+            	<div class="row">
+            		<div class="column col-sm-8" />
+            		<div class="column col-sm-3" style="display:<%= recommendVisible %>">
+            			<div style="background-color:green;width:2em;height:2em" border="1px solid transparent"> </div>
+            			<span> Recommended </span>
+            		</div>
+            		
+            		<div class="column col-sm-3" style="display:<%= notRecommendVisible %>">
+            			<div style="background-color:red;width:2em;height:2em" border="1px solid transparent"> </div>
+            			<span> Not-Recommended </span>
+            		</div>
+            		<div class="column col-sm-1" />
+            		
+            	</div>
+            	
             	<div style="margin-left: 15px"> Product : <%= reviewItem %></div>
                 <span style="margin-left: 15px"> Review By : <%= reviewBy %> || Review Time : <%= reviewTime %></span>
                 <br> <br>
