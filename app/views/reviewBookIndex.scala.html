@@ -4,26 +4,27 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta name="google-signin-client_id" content="532543530058-9kjr88ddjfqu3vtbkf2d0kg91k1o1ppo.apps.googleusercontent.com">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Review Book</title>
 <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/main.css")">
-<link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/responsive.gs.24col.css")">
+<link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/bootstrap.css")">
 </head>
 <body>
     
-        <header class="headerSection">
+        <header class="navbar-static-top navbar headerSection">
         		<div style="height: 2em;background-color: #00ccff;width=100%;" > </div>
-        		<div class="searchbar row"> 
-        			<div class="col span_4">
+        		<div class="row"> 
+        			<div class="column col-sm-3">
         				<span class="headerSpan">Review Book</span>
         			</div>
-        			<div class="col span_14 search_bar"> 
+        			<div class="column col-sm-5 search_bar"> 
         				<div class="row" style="padding-top: .5em;">
-        					<div class="search-Icon col span_2"> </div>
-        					<input class="col span_20" type="text" style="border: 0;height: 1.5em;outline: 0;font-size: 20px;" placeholder="Search Reviews" >
+        					<div class="search-Icon column col-sm-1"> </div>
+        					<input class="column col-sm-11" type="text" style="border: 0;height: 1.5em;outline: 0;font-size: 20px;" placeholder="Search Reviews" >
         				</div>
         			</div>
-        			<div class="col span_4" style="height: 1em;"> </div>
-        			<div class="col span_2 signInSignOutContainer" style="padding-top: .5em;">
+        			<div class="column col-sm-2" style="height: 1em;"> </div>
+        			<div class="column col-sm-2 signInSignOutContainer" style="padding-top: .5em;">
                          <div id="my-signin2"></div>
                          <div class="signout-container" style="visibility: hidden;">
                          	<span class="welcomeMessage"> </span>
@@ -33,20 +34,19 @@
         		</div>
         </header>
         
-        <div style="height: 1em;width: 100%"> </div>
         <div class="MainBody row">
-        	<div class="col span_2 lef_nav" style="min-height: 30em">
+        	<div class="column col-sm-2 lef_nav" style="min-height: 50em">
 				<div> <a href="javascript:showPostReviewSection()"> Post Review </a>  </div>
 				<div> <a> My Reviews </a> </div>
 				<div> <a> My Profile </a> </div>
         	</div>
-        	<div class="col span_18 trending_reviews" style="min-height: 30em"> </div>
-        	<div class="col span_4" style="min-height: 30em"> </div>
+        	<div class="column col-sm-8 trending_reviews" style="min-height: 50em"> </div>
+        	<div class="column col-sm-2" style="min-height: 50em"> </div>
         </div>
         
         
         <script type="text/template" id="trending-reviews-template">
-            <div class="review-by-div">
+            <div class="review-by-div panel">
             	<div style="margin-left: 15px"> Product : <%= reviewItem %></div>
                 <span style="margin-left: 15px"> Review By : <%= reviewBy %> || Review Time : <%= reviewTime %></span>
                 <br> <br>
@@ -58,38 +58,41 @@
         
         <script type="text/template" id="post-review-template">
             <div class="post-review-div">
-            	<form name="post-review-form">
-	            	<div class="row">
-	            		<label class="col span_4"></label>
-	            		<label class="col span_4"> Title: </label>
-	                	<input class="col span_10" type="text" name="title"/>
-	                	<label class="col span_6"></label>
-	            	</div>
-	            	<div class="row">
-	            		<label class="col span_4"></label>
-	            		<label class="col span_4"> Product Name: </label>
-	                	<input class="col span_10" type="text" name="productName"/>
-	                	<label class="col span_6"></label>
-	            	</div>
-	            	<div class="row">
-	            		<label class="col span_4"></label>
-	            		<label class="col span_4"> Comments: </label>
-	                	<textarea class="col span_10" type="text" name="comments"/>
-	                	<label class="col span_6"></label>
-	            	</div>
-	            	<div class="row">
-	            		<label class="col span_4"></label>
-	            		<label class="col span_4"> Upload Bill: </label>
-	                	<input class="col span_10" type="file" name="bill"/>
-	                	<label class="col span_6"></label>
-	            	</div>
-            	</form>
-            	<div class="row">
-	            		<label class="col span_18"></label>
-	            		<button class="col span_2" type="submit" form="post-review-form" value="Submit">Submit</button>
-	            		<label class="col span_4"></label>
-	            </div>
-            	
+            	<form class="form-horizontal" name="post-review-form" role="form">
+            		<div class="form-group">
+            			<label class="control-label col-sm-2" for="title">Title:</label>
+					    <div class="col-sm-10">
+					      <input type="text" name="title" placeholder="Enter Title of your review"/>
+					    </div>
+            		</div>
+            		
+            		<div class="form-group">
+            			<label class="control-label col-sm-2" for="productName">Product Name:</label>
+					    <div class="col-sm-10">
+					      <input type="text" name="productName" placeholder="Enter product name of which yoou wish to review"/>
+					    </div>
+            		</div>
+            		
+            		<div class="form-group">
+            			<label class="control-label col-sm-2" for="comments">Comments:</label>
+					    <div class="col-sm-10">
+					      <textarea type="text" name="comments" placeholder="Enter Your Valuable Comments"/>
+					    </div>
+            		</div>
+            		
+            		<div class="form-group">
+            			<label class="control-label col-sm-2" for="bill">Upload Receipt:</label>
+					    <div class="col-sm-10">
+					      <input type="file" name="bill"/>
+					    </div>
+            		</div>
+            		
+            		<div class="form-group"> 
+    					<div class="col-sm-offset-2 col-sm-10">
+     					 <button type="submit" class="btn btn-default" form="post-review-form">Submit</button>
+    					</div>
+  					</div>
+ 	           	</form>
             </div>
         </script>
         
