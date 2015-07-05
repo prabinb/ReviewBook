@@ -30,7 +30,8 @@ public class UserServiceImpl implements UserService {
   @Override
   public List<UserReviews> getAllProductReviews(String getAllProductReviews) {
     List<UserReviews> reviews =
-        Ebean.find(UserReviews.class).where().eq("product_name", getAllProductReviews).findList();
+        Ebean.find(UserReviews.class).where().ilike("product_name", getAllProductReviews)
+            .findList();
     return reviews;
   }
 
