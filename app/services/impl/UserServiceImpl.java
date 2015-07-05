@@ -4,7 +4,6 @@ import java.util.List;
 
 import model.User;
 import model.UserReviews;
-import model.form.PostReviewForm;
 import services.UserService;
 
 import com.avaje.ebean.Ebean;
@@ -34,23 +33,18 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public boolean saveUserReview(PostReviewForm reviewForm) {
-
-    User existing =
-        Ebean.find(User.class).where().eq("email_id", reviewForm.getEmailId()).findUnique();
-
-    if (existing == null) {
-      return false;// How can u add a review without email id.. R u crazy??
-    } else {
-      UserReviews review = new UserReviews();
-      review.setUser(existing);
-      review.setProductName(reviewForm.getProductName());
-      review.setReviewContent(reviewForm.getReviewContent());
-      review.setReviewTitle(reviewForm.getReviewTitle());
-      Ebean.save(review);
-      return true;
-    }
-
+  public boolean saveUserReview(UserReviews reviews) {
+    reviews.save();
+    return true;
+    /*
+     * User existing = Ebean.find(User.class).where().eq("email_id",
+     * reviewForm.getEmailId()).findUnique();
+     * 
+     * if (existing == null) { return false;// How can u add a review without email id.. R u crazy??
+     * } else { UserReviews review = new UserReviews(); review.setUser(existing);
+     * review.setProductName(reviewForm.getProductName());
+     * review.setReviewContent(reviewForm.getReviewContent());
+     * review.setReviewTitle(reviewForm.getReviewTitle()); Ebean.save(review); return true; }
+     */
   }
-
 }

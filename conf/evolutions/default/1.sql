@@ -14,6 +14,7 @@ create table user_reviews (
   product_name              varchar(255),
   review_content            varchar(255),
   review_title              varchar(255),
+  is_recommended            tinyint(1) default 0,
   constraint uq_user_reviews_1 unique (email_id,product_name))
 ;
 
