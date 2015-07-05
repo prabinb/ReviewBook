@@ -26,8 +26,9 @@ public class UserReviews extends Model {
   String reviewContent;
   String reviewTitle;
   boolean recommend;
-  String imageName;
-  byte[] imageData;
+
+  // String imageName;
+  // byte[] imageData;
 
   @ManyToOne(cascade = CascadeType.REMOVE)
   @JoinColumn(name = "email_id", referencedColumnName = "email_id", table = "user")
@@ -83,22 +84,15 @@ public class UserReviews extends Model {
     this.reviewId = reviewId;
   }
 
-  @Column(name = "image_name", unique = false, nullable = true, length = 100)
-  public String getImageName() {
-    return imageName;
-  }
-
-  public void setImageName(String imageName) {
-    this.imageName = imageName;
-  }
-
-  @Column(name = "image_data", unique = false, nullable = false, length = 55535)
-  public byte[] getImageData() {
-    return imageData;
-  }
-
-  public void setImageData(byte[] imageData) {
-    this.imageData = imageData;
-  }
-
+  /*
+   * @Column(name = "image_name", unique = false, nullable = true, length = 100) public String
+   * getImageName() { return imageName; }
+   * 
+   * public void setImageName(String imageName) { this.imageName = imageName; }
+   * 
+   * @Column(name = "image_data", unique = false, nullable = false, length = 55535) public byte[]
+   * getImageData() { return imageData; }
+   * 
+   * public void setImageData(byte[] imageData) { this.imageData = imageData; }
+   */
 }
