@@ -76,6 +76,7 @@ public List<UserReviews> getAllReviews(String search) {
 		List<UserReviews> reviews = Ebean.find(UserReviews.class).findList();
 		return reviews;
 	}else{
+		search+='%';
 		List<UserReviews> reviews = Ebean.find(UserReviews.class).where().or(Expr.like("review_title", search), Expr.like("product_name", search)).findList();
 		return reviews;
 	}
