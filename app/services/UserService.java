@@ -9,9 +9,9 @@ public interface UserService {
 
   boolean create(User user);
 
-  List<UserReviews> getUserReviews(String emailId);
+  List<UserReviews> getAllUserReviews(String emailId);
 
-  List<UserReviews> getAllReviews();
+  List<UserReviews> getAllProductReviews(String productName);
 
   boolean saveUserReview(UserReviews reviews);
 

@@ -3,12 +3,13 @@
 # ~~~~
 
 # Home page
-GET     /                       controllers.Application.index()
-GET     /hello                           controllers.Application.sayHello(name:String)
+GET     /                       	controllers.Application.index()
+GET     /hello                      controllers.Application.sayHello(name:String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
 POST  /saveUserInfo                 controllers.Login.login()
-GET   /getAllReviews				controllers.Reviews.getAllReviews()
+GET   /getAllUserReviews/:emailId	controllers.Reviews.getAllUserReviews(emailId:String)
+GET   /getAllProductReviews/:productName			controllers.Reviews.getAllProductReviews(productName:String)
 POST  /postReview					controllers.Reviews.postReview()

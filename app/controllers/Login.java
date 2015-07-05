@@ -1,9 +1,6 @@
 package controllers;
 
 
-import java.util.List;
-
-import model.UserReviews;
 import model.form.UserForm;
 import play.data.Form;
 import play.libs.Json;
@@ -25,13 +22,7 @@ public class Login extends Controller {
       if (userService.create(userForm.getUser())) {
         return ok(Json.toJson(new APIResult("User created successfully.")));
       } else {
-        List<UserReviews> reviews = userForm.getUser().getUserReviews();
-        if (reviews != null) {
-          return ok(Json.toJson(reviews));
-        } else {
-          return ok(Json.toJson("success"));
-
-        }
+        return ok(Json.toJson(new APIResult("User exists.")));
       }
       /*
        * return internalServerError(Json.toJson(new APIResult(

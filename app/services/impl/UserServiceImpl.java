@@ -21,30 +21,22 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public List<UserReviews> getUserReviews(String emailId) {
-    return Ebean.find(UserReviews.class).where().eq("email_id", emailId).findList();
-
+  public List<UserReviews> getAllUserReviews(String emailId) {
+    List<UserReviews> reviews =
+        Ebean.find(UserReviews.class).where().eq("email_id", emailId).findList();
+    return reviews;
   }
 
   @Override
-  public List<UserReviews> getAllReviews() {
-    return Ebean.find(UserReviews.class).findList();
-
+  public List<UserReviews> getAllProductReviews(String getAllProductReviews) {
+    List<UserReviews> reviews =
+        Ebean.find(UserReviews.class).where().eq("product_name", getAllProductReviews).findList();
+    return reviews;
   }
 
   @Override
   public boolean saveUserReview(UserReviews reviews) {
     reviews.save();
     return true;
-    /*
-     * User existing = Ebean.find(User.class).where().eq("email_id",
-     * reviewForm.getEmailId()).findUnique();
-     * 
-     * if (existing == null) { return false;// How can u add a review without email id.. R u crazy??
-     * } else { UserReviews review = new UserReviews(); review.setUser(existing);
-     * review.setProductName(reviewForm.getProductName());
-     * review.setReviewContent(reviewForm.getReviewContent());
-     * review.setReviewTitle(reviewForm.getReviewTitle()); Ebean.save(review); return true; }
-     */
   }
 }
