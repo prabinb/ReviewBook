@@ -2,8 +2,7 @@
 
 
 .headerSection {
-	height: 4em;
-	width: 100%;
+	
 }
 
 .headerSpan{
@@ -24,9 +23,13 @@
 
 .MainBody{
 	padding-top: 2em;
-	background-color: #F0F0F0;
 	border-radius: 15px;
+	background-color: #f5f8fa;
 }
+ 
+.lef_nav {
+ 	text-align: center;
+ }
  
 .lef_nav div a:hover{
 	 border-bottom: 1px solid #000;
@@ -70,9 +73,12 @@
 }
 
 .review-by-div{
-  border: 1px solid;
-  border-radius: 15px;
-  padding-top: 2em;
-  background-color: white;
+  padding-top: 1em;
+  border-bottom: 1px solid #e1e8ed;
+}
+
+.trending_reviews{
+	background-color: white !important;
+	border: 1px solid transparent !important;
 }
 
