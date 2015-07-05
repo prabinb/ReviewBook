@@ -2,11 +2,14 @@ package services.impl;
 
 import java.util.List;
 
+import model.PostedReviewsInterest;
 import model.User;
 import model.UserReviews;
+import model.form.PostedReviewsInterestForm;
 import services.UserService;
 
 import com.avaje.ebean.Ebean;
+import com.avaje.ebean.Expr;
 
 public class UserServiceImpl implements UserService {
   @Override
@@ -39,4 +42,29 @@ public class UserServiceImpl implements UserService {
     reviews.save();
     return true;
   }
+  
+  @Override
+	public Boolean savePostedReviewsInterest(
+			PostedReviewsInterestForm postedReviewsInterestForm) {
+		PostedReviewsInterest exists = Ebean
+				.find(PostedReviewsInterest.class)
+				.where()
+				.and(Expr
+						.eq("email_id", postedReviewsInterestForm.getEmailId()),
+						Expr.eq("review_id",
+								postedReviewsInterestForm.getReviewId()))
+				.findUnique();
+		if(exists == null){
+			PostedReviewsInterest formDataToSave = new PostedReviewsInterest();
+			formDataToSave.setEmailId(postedReviewsInterestForm.getEmailId());
+			formDataToSave.setReviewId(postedReviewsInterestForm.getReviewId());
+			formDataToSave.setHelpful(postedReviewsInterestForm.isHelpful());
+			Ebean.save(formDataToSave);
+			return Boolean.TRUE;
+		}else{
+//			User can post his interest only once for a particular review.
+			return Boolean.FALSE;
+		}
+	}
+
 }
