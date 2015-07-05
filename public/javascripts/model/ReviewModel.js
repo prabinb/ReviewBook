@@ -9,6 +9,7 @@ var ReviewModel = Backbone.Model.extend({
 });
 
 var ReviewModelList = Backbone.Collection.extend({
-	url: '/getAllReviews',
+	url: '/allReviews',
     model:  ReviewModel
 });
+

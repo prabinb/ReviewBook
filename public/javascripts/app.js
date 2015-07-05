@@ -44,4 +44,10 @@ function bindNavigationEvents(){
 				break;
 		}
 	});
+	
+	function bindSearchEvents(){
+		$('search_bar input').on('change',function(e){
+			var $this = $(this);
+		})
+	}
 }
