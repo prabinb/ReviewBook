@@ -150,6 +150,6 @@
 	border: 1px solid transparent !important;
 }
 
-.table-responsive tbody td {
+.table-responsive tbody td,th {
 	text-align: center !important;
 }
