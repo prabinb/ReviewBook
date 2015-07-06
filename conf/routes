@@ -18,4 +18,4 @@ GET	  /allReviews					controllers.Reviews.getAllReviews()
 GET	  /searchReviews/:searchString	controllers.Reviews.searchReviews(searchString:String)
 
 GET	  /trendingProducts					controllers.Reviews.trendingProducts()
-#GET	  /trendingUsers					controllers.Reviews.trendingUsers()
+GET	  /trendingUsers					controllers.Reviews.trendingUsers()

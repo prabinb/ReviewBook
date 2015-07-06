@@ -148,12 +148,13 @@ public class UserServiceImpl implements UserService {
   @Override
   public List<UserTrendsVO> getTrendingUsers() {
     String sql =
-        " select email_id, count(*) as total_reviews " + " from user_reviews "
-            + " group by email_id";
+        " select u.full_name as fullName, t.reviews_count as reviewsCount from "
+            + " (select count(*) as reviews_count, email_id from user_reviews group by email_id) t "
+            + " join user u " + " on u.email_id= t.email_id ";
 
     RawSql rawSql = RawSqlBuilder.parse(sql).create();
     Query<UserTrendsVO> query = Ebean.find(UserTrendsVO.class);
-    query.setRawSql(rawSql).order().desc("total_reviews").setMaxRows(4);
+    query.setRawSql(rawSql).order().desc("reviews_count").setMaxRows(4);
     List<UserTrendsVO> output = query.findList();
     return output;
   }
