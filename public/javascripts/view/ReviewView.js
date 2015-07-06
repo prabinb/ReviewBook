@@ -9,7 +9,7 @@ var ReviewView = Backbone.View.extend({
 			if(models && models.length>0){
 				for(var i=0;i<models.length;i++){
 					var values = {
-							reviewBy : models[i].attributes.fullname,
+							reviewBy : models[i].attributes.fullName,
 							reviewItem : models[i].attributes.productName,
 							reviewHeading : models[i].attributes.reviewTitle,
 							reviewBody : models[i].attributes.reviewContent,
