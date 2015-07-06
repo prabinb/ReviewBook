@@ -4,7 +4,9 @@ import java.util.List;
 
 import model.User;
 import model.UserReviews;
+import model.VO.ProductTrendsVO;
 import model.VO.UserReviewsVO;
+import model.VO.UserTrendsVO;
 import model.form.PostedReviewsInterestForm;
 
 public interface UserService {
@@ -18,6 +20,10 @@ public interface UserService {
   boolean saveUserReview(UserReviews reviews);
 
   Boolean savePostedReviewsInterest(PostedReviewsInterestForm postedReviewsInterestForm);
+
+  List<ProductTrendsVO> getTrendingProducts();
+
+  List<UserTrendsVO> getTrendingUsers();
 
   List<UserReviewsVO> getAllReviews(String search);
 

@@ -66,4 +66,16 @@ public class Reviews extends Controller {
   public Result searchReviews(String searchString) {
     return ok(Json.toJson(userService.getAllReviews(searchString)));
   }
+
+
+  public Result trendingUsers() {
+    return ok(Json.toJson(userService.getTrendingUsers()));
+  }
+
+
+
+  public Result trendingProducts() {
+    return ok(Json.toJson(userService.getTrendingProducts()));
+  }
+
 }

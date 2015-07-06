@@ -5,7 +5,9 @@ import java.util.List;
 import model.PostedReviewsInterest;
 import model.User;
 import model.UserReviews;
+import model.VO.ProductTrendsVO;
 import model.VO.UserReviewsVO;
+import model.VO.UserTrendsVO;
 import model.form.PostedReviewsInterestForm;
 
 import org.apache.commons.lang3.StringUtils;
@@ -14,6 +16,9 @@ import services.UserService;
 
 import com.avaje.ebean.Ebean;
 import com.avaje.ebean.Expr;
+import com.avaje.ebean.Query;
+import com.avaje.ebean.RawSql;
+import com.avaje.ebean.RawSqlBuilder;
 import com.google.common.collect.Lists;
 
 public class UserServiceImpl implements UserService {
@@ -127,4 +132,29 @@ public class UserServiceImpl implements UserService {
     return output;
   }
 
+  @Override
+  public List<ProductTrendsVO> getTrendingProducts() {
+    String sql =
+        " select product_name, sum(is_recommended) as is_recommended, count(*) as total_count "
+            + " from user_reviews " + " group by product_name ";
+
+    RawSql rawSql = RawSqlBuilder.parse(sql).create();
+    Query<ProductTrendsVO> query = Ebean.find(ProductTrendsVO.class);
+    query.setRawSql(rawSql).order().desc("is_recommended").setMaxRows(4);
+    List<ProductTrendsVO> output = query.findList();
+    return output;
+  }
+
+  @Override
+  public List<UserTrendsVO> getTrendingUsers() {
+    String sql =
+        " select email_id, count(*) as total_reviews " + " from user_reviews "
+            + " group by email_id";
+
+    RawSql rawSql = RawSqlBuilder.parse(sql).create();
+    Query<UserTrendsVO> query = Ebean.find(UserTrendsVO.class);
+    query.setRawSql(rawSql).order().desc("total_reviews").setMaxRows(4);
+    List<UserTrendsVO> output = query.findList();
+    return output;
+  }
 }
