@@ -13,12 +13,12 @@ public interface UserService {
 
   List<UserReviewsVO> getAllUserReviews(String emailId);
 
-  List<UserReviews> getAllProductReviews(String productName);
+  List<UserReviewsVO> getAllProductReviews(String productName);
 
   boolean saveUserReview(UserReviews reviews);
 
   Boolean savePostedReviewsInterest(PostedReviewsInterestForm postedReviewsInterestForm);
 
-  List<UserReviews> getAllReviews(String search);
+  List<UserReviewsVO> getAllReviews(String search);
 
 }

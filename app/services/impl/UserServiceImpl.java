@@ -34,8 +34,6 @@ public class UserServiceImpl implements UserService {
         Ebean.find(UserReviews.class).where().eq("email_id", emailId).findList();
     List<UserReviewsVO> output = Lists.newArrayList();
     for (UserReviews review : reviews) {
-
-
       List<PostedReviewsInterest> postedReviewsInterest = Lists.newArrayList();
       postedReviewsInterest =
           Ebean.find(PostedReviewsInterest.class).where().eq("review_id", review.getReviewId())
@@ -58,11 +56,16 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public List<UserReviews> getAllProductReviews(String getAllProductReviews) {
+  public List<UserReviewsVO> getAllProductReviews(String getAllProductReviews) {
     List<UserReviews> reviews =
         Ebean.find(UserReviews.class).where().ilike("product_name", getAllProductReviews)
             .findList();
-    return reviews;
+    List<UserReviewsVO> output = Lists.newArrayList();
+    for (UserReviews review : reviews) {
+      UserReviewsVO vo = new UserReviewsVO(review);
+      output.add(vo);
+    }
+    return output;
   }
 
   @Override
@@ -103,17 +106,25 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public List<UserReviews> getAllReviews(String search) {
+  public List<UserReviewsVO> getAllReviews(String search) {
+    List<UserReviews> reviews = null;
     if (StringUtils.isEmpty(search)) {
-      List<UserReviews> reviews = Ebean.find(UserReviews.class).findList();
-      return reviews;
+      reviews = Ebean.find(UserReviews.class).findList();
     } else {
       search += '%';
-      List<UserReviews> reviews =
+      reviews =
           Ebean.find(UserReviews.class).where()
               .or(Expr.like("review_title", search), Expr.like("product_name", search)).findList();
-      return reviews;
+
     }
+    List<UserReviewsVO> output = Lists.newArrayList();
+    if (reviews != null) {
+      for (UserReviews review : reviews) {
+        UserReviewsVO vo = new UserReviewsVO(review);
+        output.add(vo);
+      }
+    }
+    return output;
   }
 
 }
