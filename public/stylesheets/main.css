@@ -139,10 +139,10 @@
   background-size: 2em;
 }
 
-.review-by-div .helpful_content_div div{
-	background-color: #EFEFEF; 
+.review-by-div .helpful_content_div a{
 	  white-space: nowrap;
 	  cursor: pointer;
+	  text-decoration: none;
 }
 
 .trending_reviews{
