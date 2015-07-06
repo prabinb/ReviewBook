@@ -38,8 +38,8 @@ var TrendingUsersView = Backbone.View.extend({
 			for(var i=0;i<models.length;i++){
 				var tr = $('<tr></tr>');
 				tr.append('<td>'+(i+1)+'</td');
-				tr.append('<td>'+models[i].attributes.full_name+'</td');
-				tr.append('<td>'+models[i].attributes.review_count+'</td');
+				tr.append('<td>'+models[i].attributes.fullName+'</td');
+				tr.append('<td>'+models[i].attributes.reviewCount+'</td');
 				tableBody.append(tr);
 			}
 		}
