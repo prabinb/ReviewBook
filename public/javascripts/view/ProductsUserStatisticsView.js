@@ -32,14 +32,14 @@ var TrendingUsersView = Backbone.View.extend({
 	renderTrendingUsers : function(models){
 		var self = this;
 		self.$el.find('.table-responsive').remove();
-		self.$el.append(self.trending_products_template);
+		self.$el.append(self.trending_users_template);
 		var tableBody = self.$el.find('.table-responsive').find('tbody');
 		if(models && models.length>0){
 			for(var i=0;i<models.length;i++){
 				var tr = $('<tr></tr>');
 				tr.append('<td>'+(i+1)+'</td');
-				tr.append('<td>'+models[i].attributes.fullName+'</td');
-				tr.append('<td>'+models[i].attributes.reviewCount+'</td');
+				tr.append('<td>'+models[i].attributes.full_name+'</td');
+				tr.append('<td>'+models[i].attributes.reviews_count+'</td');
 				tableBody.append(tr);
 			}
 		}
