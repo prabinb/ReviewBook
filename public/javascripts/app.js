@@ -13,6 +13,22 @@ function loadTrendingReviews() {
 			new ReviewView().renderReviews(model.models);
 		}
 	});
+	
+	
+	var trendingProductsList = new TrendingProductsModelList();
+	trendingProductsList.fetch({
+		success : function(model, response, options){
+			new TrendingProductsView().renderTrendingProducts(model.models);
+		}
+	});
+	
+	
+	var trendingUsersList = new TrendingUserModelList();
+	trendingUsersList.fetch({
+		success : function(model, response, options){
+			new TrendingUsersView().renderTrendingUsers(model.models);
+		}
+	});
 }
 
 function searchReviews(searchString) {
