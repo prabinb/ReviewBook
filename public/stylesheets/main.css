@@ -83,8 +83,66 @@
 }
 
 .review-by-div{
-  padding-top: 1em;
-  border-bottom: 1px solid #e1e8ed;
+  padding: 1em 0 1em 1em;
+  border: 1px solid #E1E900;
+  border-radius: 25px;
+  margin : 2em 0 0 0;
+}
+
+.review-by-div .product_div{
+	font-weight:bold;
+	font-size: 18px;
+}
+
+.review-by-div .review_heading_div{
+	font-weight:normal;
+	font-style: oblique;
+	font-size: 15px;
+}
+
+.review-by-div .review_name{
+	color: #dedede !important;
+  font-weight: normal !important;
+  font-size: 14px !important;
+  text-align: right !important;
+}
+
+.review-by-div .recommended-div{
+	width: 2em;
+  height: 2em;
+  background: url('../images/green_tick.png') no-repeat scroll 0 0 transparent;
+  background-size: 2em;
+}
+
+.trending_products {
+	height:10em;
+	border:1px solid #E1E900;
+	background-color:white;
+	border-radius:10px;
+	margin : 1em 0 1em 0;
+	padding : 1em 0 1em 1em;
+}
+
+.top_users{
+	height:10em;
+	border:1px solid #E1E900;
+	background-color:white;
+	border-radius:10px;
+	margin : 0 0 4em 0;
+	padding : 1em 0 0 1em;
+}
+
+.review-by-div .not-recommended-div{
+	width: 2em;
+  height: 2em;
+  background: url('../images/red_cross.png') no-repeat scroll 0 0 transparent;
+  background-size: 2em;
+}
+
+.review-by-div .helpful_content_div div{
+	background-color: #EFEFEF; 
+	  white-space: nowrap;
+	  cursor: pointer;
 }
 
 .trending_reviews{
