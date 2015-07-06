@@ -58,12 +58,12 @@ public class Reviews extends Controller {
     }
     return ok(Json.toJson(userService.getAllProductReviews(productName)));
   }
-  
-  public Result getAllReviews(){
-	  return ok(Json.toJson(userService.getAllReviews("")));
+
+  public Result getAllReviews() {
+    return ok(Json.toJson(userService.getAllReviews("")));
   }
-  
-  public Result searchReviews(String searchString){
-	  return ok(Json.toJson(userService.getAllReviews(searchString)));
+
+  public Result searchReviews(String searchString) {
+    return ok(Json.toJson(userService.getAllReviews(searchString)));
   }
 }

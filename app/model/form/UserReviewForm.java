@@ -68,4 +68,5 @@ public class UserReviewForm {
     review.setRecommend((recommend.toUpperCase().equals("TRUE")) ? true : false);
     return review;
   }
+
 }
