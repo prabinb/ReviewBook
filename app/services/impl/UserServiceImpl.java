@@ -5,6 +5,7 @@ import java.util.List;
 import model.PostedReviewsInterest;
 import model.User;
 import model.UserReviews;
+import model.VO.UserReviewsVO;
 import model.form.PostedReviewsInterestForm;
 
 import org.apache.commons.lang3.StringUtils;
@@ -13,6 +14,7 @@ import services.UserService;
 
 import com.avaje.ebean.Ebean;
 import com.avaje.ebean.Expr;
+import com.google.common.collect.Lists;
 
 public class UserServiceImpl implements UserService {
   @Override
@@ -27,17 +29,32 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public List<UserReviews> getAllUserReviews(String emailId) {
+  public List<UserReviewsVO> getAllUserReviews(String emailId) {
     List<UserReviews> reviews =
         Ebean.find(UserReviews.class).where().eq("email_id", emailId).findList();
-    /*
-     * for (UserReviews review : reviews) {
-     * review.setPostedReviewsInterest(Ebean.find(PostedReviewsInterest.class)
-     * .fetch("PostedReviewsInterest").findList()); //
-     * Ebean.find(UserReviews.class).fetch("postedUserReviews", new FetchConfig().query()); //
-     * review.getPostedReviewsInterest(); }
-     */
-    return reviews;
+    List<UserReviewsVO> output = Lists.newArrayList();
+    for (UserReviews review : reviews) {
+
+
+      List<PostedReviewsInterest> postedReviewsInterest = Lists.newArrayList();
+      postedReviewsInterest =
+          Ebean.find(PostedReviewsInterest.class).where().eq("review_id", review.getReviewId())
+              .findList();
+      // find.fetch("postedUserReviews").where().eq("review_id, review.getReviewId()").findList();
+      /*
+       * review.setPostedReviewsInterest(Ebean.find(PostedReviewsInterest.class)
+       * .fetch("PostedReviewsInterest").findList()); //
+       * Ebean.find(UserReviews.class).fetch("postedUserReviews", new FetchConfig().query()); //
+       */
+      for (PostedReviewsInterest interest : postedReviewsInterest) {
+        interest.setUserReviews(null);
+      }
+      review.setPostedReviewsInterest(postedReviewsInterest);
+      UserReviewsVO vo = new UserReviewsVO(review);
+      output.add(vo);
+    }
+
+    return output;
   }
 
   @Override

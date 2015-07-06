@@ -41,9 +41,7 @@ public class UserReviews extends Model {
     return user;
   }
 
-  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-  @JoinColumn(name = "review_id", referencedColumnName = "review_id",
-      table = "posted_reviews_interest")
+  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "userReviews")
   public List<PostedReviewsInterest> getPostedReviewsInterest() {
     return postedReviewsInterest;
   }
