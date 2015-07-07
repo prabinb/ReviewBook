@@ -77,5 +77,9 @@ public class Reviews extends Controller {
   public Result trendingProducts() {
     return ok(Json.toJson(userService.getTrendingProducts()));
   }
+  
+  public Result getProductSuggestions(String searchString){
+	  return ok(Json.toJson(userService.getProductSuggestions(searchString)));
+  }
 
 }

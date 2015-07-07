@@ -1,5 +1,6 @@
 package services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.PostedReviewsInterest;
@@ -158,4 +159,15 @@ public class UserServiceImpl implements UserService {
     List<UserTrendsVO> output = query.findList();
     return output;
   }
+
+@Override
+public  List<String> getProductSuggestions(String searchString) {
+	List<UserReviews> userReviews = Ebean.find(UserReviews.class).select("productName").setDistinct(true).
+													where().ilike("productName", "%"+searchString+"%").setMaxRows(4).findList();
+	List<String> productNames = new ArrayList<String>(userReviews.size());
+	for(UserReviews userReview : userReviews){
+		productNames.add(userReview.getProductName());
+	}
+	return productNames;
+}
 }

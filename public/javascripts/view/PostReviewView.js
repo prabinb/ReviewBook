@@ -17,6 +17,7 @@ var PostReviewView = Backbone.View.extend({
  function showPostReviewSection(){
 	 new PostReviewView().render();
 	 bindPostReviewEvents();
+	 bindProductAutoSuggest();
  }
 
  

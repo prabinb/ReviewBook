@@ -9,6 +9,7 @@
 <title>Review Book</title>
 <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/main.css")">
 <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/bootstrap.css")">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 </head>
 <body>
     
@@ -21,7 +22,7 @@
         			<div class="column col-sm-5 search_bar"> 
         				<div class="row" style="padding-top: .5em;">
         					<div class="search-Icon column col-sm-1"> </div>
-        					<input class="column col-sm-11" type="text" style="border: 0;height: 1.5em;outline: 0;font-size: 20px;" placeholder="Search Reviews" >
+        					<input class="column col-sm-11 suggest_product" type="text" style="border: 0;height: 1.5em;outline: 0;font-size: 20px;" placeholder="Search Reviews" >
         				</div>
         			</div>
         			<div class="column col-sm-2" style="height: 1em;"> </div>
@@ -146,7 +147,7 @@
             		<div class="form-group">
             			<label class="control-label col-sm-2" for="productName">Product Name:</label>
 					    <div class="col-sm-10">
-					      <input type="text" name="productName" placeholder="Enter product name of which yoou wish to review"/>
+					      <input type="text" name="productName" class="suggest_product" placeholder="Enter product name of which yoou wish to review"/>
 					    </div>
             		</div>
             		
@@ -235,6 +236,7 @@
         <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
         <script src="@routes.Assets.versioned("javascripts/node_modules/jquery/dist/jquery.js")"></script>
         <script src="@routes.Assets.versioned("javascripts/node_modules/jquery/dist/jquery.form.js")"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script src="@routes.Assets.versioned("javascripts/node_modules/underscore/underscore.js")"></script>
         <script src="@routes.Assets.versioned("javascripts/node_modules/backbone/backbone.js")"></script>
         
@@ -247,6 +249,7 @@
         <script src="@routes.Assets.versioned("javascripts/model/LoginModel.js")"></script>
         <script src="@routes.Assets.versioned("javascripts/model/PostReviewModel.js")"></script>
         <script src="@routes.Assets.versioned("javascripts/model/ReviewModel.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/model/SearchSuggestionsModel.js")"></script>
         <script src="@routes.Assets.versioned("javascripts/model/ProductsUserStatisticsModel.js")"></script>
         
 </body>

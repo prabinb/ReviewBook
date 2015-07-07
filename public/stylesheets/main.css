@@ -1,6 +1,16 @@
 @import url(http://fonts.googleapis.com/css?family=Tangerine|Roboto:500);
 
 
+.ui-autocomplete-loading {
+    background: white url("../images/loading.gif") right center no-repeat;
+}
+.ui-widget-content{
+	border : 1px solid #E1E900 !important;
+	padding-top: 1.5em !important;
+	font-size: 14px !important;
+  	font-style: italic !important;
+}
+  
 .headerSection {
 	
 }

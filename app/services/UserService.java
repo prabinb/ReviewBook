@@ -27,4 +27,6 @@ public interface UserService {
 
   List<UserReviewsVO> getAllReviews(String search);
 
+  List<String> getProductSuggestions(String searchString);
+
 }

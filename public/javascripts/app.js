@@ -60,6 +60,10 @@ function resetNavigations(){
 function bindEvents(){
 	bindNavigationEvents();
 	bindSearchEvents();
+	bindProductAutoSuggest();
+	$('.review-by-div a').on("cick",function(e){
+		alert();
+	})
 }
 
 function bindNavigationEvents(){
@@ -87,13 +91,6 @@ function bindNavigationEvents(){
 }
 
 function bindSearchEvents(){
-	$('.search_bar input').on('change',function(e){
-		var $this = $(this);
-		if($this.val() && $this.val().length > 3){
-			searchReviews($this.val());
-		}
-	});
-	
 	$('.search_bar input').keyup(function(e){
 		var $this = $(this);
 		if(e.keyCode == 13){
@@ -103,7 +100,34 @@ function bindSearchEvents(){
 			else{
 				loadTrendingReviews();
 			}
-			
 		}
 	});
+}
+
+function bindProductAutoSuggest(){
+	$( ".suggest_product" ).autocomplete({
+	      source: function( request, response ) {
+	    	  var searchSuggestionModel = new SearchSuggestionModelList();
+	    	  searchSuggestionModel.url += '/'+request.term;
+	    	  $(this).addClass('ui-autocomplete-loading');
+	    	  var me = $(this);
+	    	  searchSuggestionModel.fetch({
+					success : function(model, data, options){
+						response( data );
+						me.removeClass('ui-autocomplete-loading');
+					}
+	    	  });
+	      },
+	      minLength: 3,
+	      select: function( event, ui ) {
+	    	searchReviews(ui.item.label);
+	      },
+	      open: function() {
+	        $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+	      },
+	      close: function() {
+	    	  $( this ).removeClass('ui-autocomplete-loading');
+	        $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+	      }
+	    });
 }
