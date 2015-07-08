@@ -44,7 +44,12 @@ var ReviewView = Backbone.View.extend({
 								}
 							}
 							else{
-								alert('You Have already marked for this post');
+								$('.modal-title').html('Warning');
+								$('.modal-body p').html('Oops!!!! Seems like you have already marked for this post');
+								$('.modal').modal({
+									keyboard: true,
+									show : true
+								});
 							}
 						}
 					})

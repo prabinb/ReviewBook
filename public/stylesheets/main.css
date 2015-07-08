@@ -93,6 +93,7 @@
 	border-bottom: 1px solid !important;
 	font-size: 16px;
 	 width: 60%;
+	 background-color: transparent;
 }
 .post-review-div textarea{
 	border : 0px !important;
@@ -100,10 +101,12 @@
 	font-size: 16px;
 	 width: 60%;
 	 height: 4em;
+	 background-color: transparent;
 }
 
 .post-review-div  input[type="radio"]{
 	height: 1em;
+	background-color: transparent;
 }
 
 .post-review-div label{

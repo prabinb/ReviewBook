@@ -30,11 +30,21 @@ var PostReviewView = Backbone.View.extend({
 		            url: form.attr('action'),
 		            data: form.serialize(),
 		            success: function (data) {
-		            	alert('Submitted Your Review Successfully. Thank You');
+		            	$('.modal-title').html('Information');
+						$('.modal-body p').html('Yipeeee!!!! You have submitted your review successfully');
+						$('.modal').modal({
+							keyboard: true,
+							show : true
+						});
 		                loadTrendingReviews();
 		            },
 		            error : function(){
-		            	alert('Failed to submit form')
+		            	$('.modal-title').html('Warning');
+						$('.modal-body p').html('Oops !! Error occured during submitting your review :( ');
+						$('.modal').modal({
+							keyboard: true,
+							show : true
+						});
 		            }
 			 			
 		        });
