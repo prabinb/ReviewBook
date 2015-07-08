@@ -22,7 +22,35 @@ var PostReviewView = Backbone.View.extend({
 
  
  function bindPostReviewEvents(){
-	 $('.post-review-div .btn-default').on({
+	 
+	 $('#uploadBill').fileupload({
+	        dataType: 'json',
+	        add: function (e, data) {
+	        	$('.post-review-div .btn-default').on({
+	       		 click : function(){
+	       			data.submit();
+	       		 }});
+	        },
+	        done: function (e, data) {
+	        	$('.modal-title').html('Information');
+				$('.modal-body p').html('Yipeeee!!!! You have submitted your review successfully');
+				$('.modal').modal({
+					keyboard: true,
+					show : true
+				});
+                loadTrendingReviews();
+	        },
+	        fail : function(){
+	        	$('.modal-title').html('Warning');
+				$('.modal-body p').html('Oops !! Error occured during submitting your review :( ');
+				$('.modal').modal({
+					keyboard: true,
+					show : true
+				});
+	        }
+	    });
+	 
+	/* $('.post-review-div .btn-default').on({
 		 click : function(){
 			 var form=$('form[name=post-review-form]')
 			 $.ajax({
@@ -49,6 +77,6 @@ var PostReviewView = Backbone.View.extend({
 			 			
 		        });
 		 }
-	 })
+	 })*/
  }
  
