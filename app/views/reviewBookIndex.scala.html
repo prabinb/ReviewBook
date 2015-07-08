@@ -14,33 +14,39 @@
 <body>
     
         <header class="navbar-static-top navbar headerSection">
-        		<div style="height: 2em;background-color: #00ccff;width=100%;" > </div>
         		<div class="row"> 
-        			<div class="column col-sm-3">
-        				<span class="headerSpan" onclick="javascript:loadTrendingReviews()">Review Book</span>
+        			<div class="column logo col-sm-2">
         			</div>
-        			<div class="column col-sm-5 search_bar"> 
-        				<div class="row" style="padding-top: .5em;">
-        					<div class="search-Icon column col-sm-1"> </div>
-        					<input class="column col-sm-11 suggest_product" type="text" style="border: 0;height: 1.5em;outline: 0;font-size: 20px;" placeholder="Search Reviews" >
-        				</div>
+        			<div class="column col-sm-4 search_bar"> 
+        					<div class="search-Icon"> </div>
+        					<input class="suggest_product" type="text" placeholder="Search Reviews" >
         			</div>
-        			<div class="column col-sm-2" style="height: 1em;"> </div>
-        			<div class="column col-sm-2 signInSignOutContainer" style="padding-top: .5em;">
+        			<div class="column col-sm-3 header_navbar"> 
+        					<div class="row">
+        						<div class="column col-sm-3 home" onclick="javascript:loadTrendingReviews()"> <span> Home </span></div>
+        						<div class="column col-sm-3 post" onclick="javascript:showPostReviewSection()"> <span> Post </span></div>
+        					</div>
+        			</div>
+        			<div class="column col-sm-2 signInSignOutContainer">
                          <div id="my-signin2"></div>
-                         <div class="signout-container" style="visibility: hidden;">
-                         	<span class="welcomeMessage"> </span>
-        					<span style="color: blue;cursor: pointer;" onclick="javascript:logout()"> Logout </span>
+                         <div class="signout-container" style="display: none">
+                         	<button class="btn btn-default dropdown-toggle image" type="button" id="logoutMenu" 
+                         				data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" > 
+                         	</button>
+                         	<span class="caret"></span>
+                         	<ul class="dropdown-menu" aria-labelledby="logoutMenu" >
+                         			<li> <a href="javascript:logout()"> Logout </a></li>
+                         			<li> <a href="javascript:loadUserReviews()"> My Reviews </a> </li>
+                         	</ul>
+                         	<span class="userName" style="top: 1em;position: relative;padding-left: 1em;"> </span>
                          </div>
                     </div>
         		</div>
         </header>
         
         <div class="MainBody row">
-        	<div class="column col-sm-2 lef_nav" style="min-height: 50em">
-				<div> <a action="postReview"> Post Review </a>  </div>
-				<div> <a action="myReviews"> My Reviews </a> </div>
-				<!--<div> <a action="myProfile"> My Profile </a> </div>-->
+        	<div class="column col-sm-2 " style="min-height: 50em">
+				
         	</div>
         	<div class="column col-sm-6 trending_reviews" style="min-height: 50em"> </div>
         	<div class="column col-sm-4" style="min-height: 50em"> 
@@ -57,7 +63,7 @@
         
         <script type="text/template" id="trending_products_template">
         	<div class="table-responsive">
-			<table class="table-striped  table-hover table-condensed">
+			<table class="table">
 				<thead>
 					<tr>
 						<th>#</th>
@@ -147,7 +153,7 @@
             		<div class="form-group">
             			<label class="control-label col-sm-2" for="productName">Product Name:</label>
 					    <div class="col-sm-10">
-					      <input type="text" name="productName" class="suggest_product" placeholder="Enter product name of which yoou wish to review"/>
+					      <input type="text" name="productName" class="" placeholder="Enter product name of which yoou wish to review"/>
 					    </div>
             		</div>
             		
@@ -197,9 +203,10 @@
                 					emailId:profile.getEmail()},{
                 		success : function(){
                 			var signInSignOutContainer = $('.signInSignOutContainer');
-                			signInSignOutContainer.find('#my-signin2').css('visibility','hidden');
-                			signInSignOutContainer.find('.signout-container').css('visibility','visible');
-                			signInSignOutContainer.find('.welcomeMessage').html('Welcome '+profile.getName());
+                			signInSignOutContainer.find('#my-signin2').css('display','none');
+                			signInSignOutContainer.find('.signout-container').css('display','block');
+                			signInSignOutContainer.find('.signout-container > .image').css('background-image', 'url(' + profile.getImageUrl() + ')');
+                			signInSignOutContainer.find('.signout-container .userName').html('HI, '+profile.getName().split(" ")[0]);
                 		},
                 		error : function(){
                 			alert(' :( Failed to Login. Please check your credentials and try again :)');
@@ -213,9 +220,10 @@
                 	var auth2 = gapi.auth2.getAuthInstance();
 				    auth2.signOut().then(function () {
 				      	var signInSignOutContainer = $('.signInSignOutContainer');
-				      	signInSignOutContainer.find('#my-signin2').css('visibility','visible');
-                		signInSignOutContainer.find('.signout-container').css('visibility','hidden');
+				      	signInSignOutContainer.find('#my-signin2').show();
+                		signInSignOutContainer.find('.signout-container').hide();
 				    });
+				    loadTrendingReviews();
                 }
 
                 function onFailure(error) {
@@ -236,6 +244,7 @@
         <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
         <script src="@routes.Assets.versioned("javascripts/node_modules/jquery/dist/jquery.js")"></script>
         <script src="@routes.Assets.versioned("javascripts/node_modules/jquery/dist/jquery.form.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/node_modules/jquery/plugin/bootstrap.js")"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script src="@routes.Assets.versioned("javascripts/node_modules/underscore/underscore.js")"></script>
         <script src="@routes.Assets.versioned("javascripts/node_modules/backbone/backbone.js")"></script>
