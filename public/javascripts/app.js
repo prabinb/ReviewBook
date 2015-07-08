@@ -53,9 +53,6 @@ function loadUserReviews() {
 function bindEvents(){
 	bindSearchEvents();
 	bindProductAutoSuggest();
-	$('.review-by-div a').on("cick",function(e){
-		alert();
-	});
 	$('.dropdown-toggle').dropdown()
 }
 

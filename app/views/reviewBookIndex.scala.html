@@ -96,7 +96,7 @@
         
         
         <script type="text/template" id="trending-reviews-template">
-            <div class="review-by-div" reviewId="<%= reviewId %>">
+            <div class="review-by-div" reviewid="<%= reviewId %>">
             	<br>
             	<div class="row product_div">
             		<div class="column col-sm-4"> <%= reviewItem %></div>
@@ -129,10 +129,10 @@
             		<div class="column col-sm-1" />
             		
             		<div class="column col-sm-2 helpful_content_div" >
-            			<a> Helpful(<%= helpful %>)</a>
+            			<a helpful="true" count="<%= helpful %>)"> Helpful(<%= helpful %>)</a>
             		</div>
             		<div class="column col-sm-3 helpful_content_div" >
-            			<a> Not Helpful(<%= notHelpful %>)</a>
+            			<a helpful="false" count="<%= notHelpful %>)"> Not Helpful(<%= notHelpful %>)</a>
             		</div>
             	</div>
             	

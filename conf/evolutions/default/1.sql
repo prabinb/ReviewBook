@@ -27,10 +27,8 @@ create table user_reviews (
   constraint pk_user_reviews primary key (review_id))
 ;
 
-alter table posted_reviews_interest add constraint fk_posted_reviews_interest_userReviews_1 foreign key (review_id) references user_reviews (review_id) on delete restrict on update restrict;
-create index ix_posted_reviews_interest_userReviews_1 on posted_reviews_interest (review_id);
-alter table user_reviews add constraint fk_user_reviews_user_2 foreign key (email_id) references user (email_id) on delete restrict on update restrict;
-create index ix_user_reviews_user_2 on user_reviews (email_id);
+alter table user_reviews add constraint fk_user_reviews_user_1 foreign key (email_id) references user (email_id) on delete restrict on update restrict;
+create index ix_user_reviews_user_1 on user_reviews (email_id);
 
 
 

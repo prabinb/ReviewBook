@@ -26,9 +26,9 @@ public class PostedReviewsInterest extends Controller{
 		} else {
 			PostedReviewsInterestForm formToSave = form.get();
 			if(userService.savePostedReviewsInterest(formToSave)){
-				return ok(Json.toJson(new APIResult("PostedReviewsInterest: Saved  successfully.")));
+				return ok(Json.toJson(new APIResult("true")));
 			}else{
-				return ok(Json.toJson(new APIResult("PostedReviewsInterest: Could not be saved successfully, errors occurred.")));
+				return ok(Json.toJson(new APIResult("false")));
 			}
 		}
 	}

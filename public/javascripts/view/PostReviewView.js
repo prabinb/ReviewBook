@@ -30,7 +30,7 @@ var PostReviewView = Backbone.View.extend({
 		            url: form.attr('action'),
 		            data: form.serialize(),
 		            success: function (data) {
-		                alert('Submitted Your Review Successfully. Thank You');
+		            	alert('Submitted Your Review Successfully. Thank You');
 		                loadTrendingReviews();
 		            },
 		            error : function(){

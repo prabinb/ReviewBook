@@ -47,3 +47,10 @@ var UserReviewModelList = Backbone.Collection.extend({
   model:  UserReviewModel
 });
 
+
+var UsefulReviewModel = Backbone.Model.extend({
+	urlRoot: '/postedReviewsInterest',
+	  defaults: {
+	  }
+});
+

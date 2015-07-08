@@ -40,21 +40,14 @@ public class UserServiceImpl implements UserService {
         Ebean.find(UserReviews.class).where().eq("email_id", emailId).findList();
     List<UserReviewsVO> output = Lists.newArrayList();
     for (UserReviews review : reviews) {
-      List<PostedReviewsInterest> postedReviewsInterest = Lists.newArrayList();
-      postedReviewsInterest =
-          Ebean.find(PostedReviewsInterest.class).where().eq("review_id", review.getReviewId())
-              .findList();
-      // find.fetch("postedUserReviews").where().eq("review_id, review.getReviewId()").findList();
-      /*
-       * review.setPostedReviewsInterest(Ebean.find(PostedReviewsInterest.class)
-       * .fetch("PostedReviewsInterest").findList()); //
-       * Ebean.find(UserReviews.class).fetch("postedUserReviews", new FetchConfig().query()); //
-       */
-      for (PostedReviewsInterest interest : postedReviewsInterest) {
-        interest.setUserReviews(null);
-      }
-      review.setPostedReviewsInterest(postedReviewsInterest);
-      UserReviewsVO vo = new UserReviewsVO(review);
+      int helpfulCount = Ebean.find(PostedReviewsInterest.class).where().
+    		  eq("review_id", review.getReviewId()).
+    		  and(Expr.eq("email_id", review.getUser().getEmailId()), Expr.eq("helpful", 1)).findRowCount();
+      
+      int notHelpfulCount = Ebean.find(PostedReviewsInterest.class).where().
+    		  eq("review_id", review.getReviewId()).
+    		  and(Expr.eq("email_id", review.getUser().getEmailId()), Expr.eq("helpful", 0)).findRowCount();
+      UserReviewsVO vo = new UserReviewsVO(review,helpfulCount,notHelpfulCount);
       output.add(vo);
     }
 
@@ -68,7 +61,14 @@ public class UserServiceImpl implements UserService {
             .findList();
     List<UserReviewsVO> output = Lists.newArrayList();
     for (UserReviews review : reviews) {
-      UserReviewsVO vo = new UserReviewsVO(review);
+    	int helpfulCount = Ebean.find(PostedReviewsInterest.class).where().
+      		  eq("review_id", review.getReviewId()).
+      		  and(Expr.eq("email_id", review.getUser().getEmailId()), Expr.eq("helpful", 1)).findRowCount();
+        
+        int notHelpfulCount = Ebean.find(PostedReviewsInterest.class).where().
+      		  eq("review_id", review.getReviewId()).
+      		  and(Expr.eq("email_id", review.getUser().getEmailId()), Expr.eq("helpful", 0)).findRowCount();
+      UserReviewsVO vo = new UserReviewsVO(review,helpfulCount,notHelpfulCount);
       output.add(vo);
     }
     return output;
@@ -90,19 +90,9 @@ public class UserServiceImpl implements UserService {
                 Expr.eq("review_id", postedReviewsInterestForm.getReviewId())).findUnique();
     if (exists == null) {
       PostedReviewsInterest postedReviewsInterest = new PostedReviewsInterest();
+      postedReviewsInterest.setReviewId(postedReviewsInterestForm.getReviewId());
       postedReviewsInterest.setEmailId(postedReviewsInterestForm.getEmailId());
-      // postedReviewsInterest.setReviewId(postedReviewsInterestForm.getReviewId());
       postedReviewsInterest.setHelpful(postedReviewsInterestForm.isHelpful());
-      UserReviews userReviews =
-          Ebean.find(UserReviews.class).where()
-              .eq("review_id", postedReviewsInterestForm.getReviewId()).findUnique();
-      /*
-       * List<PostedReviewsInterest> existingPostedReviewsInterest =
-       * userReviews.getPostedReviewsInterest(); if (existingPostedReviewsInterest == null) {
-       * existingPostedReviewsInterest = Lists.newArrayList(); }
-       * existingPostedReviewsInterest.add(postedReviewsInterest);
-       */
-      postedReviewsInterest.setUserReviews(userReviews);
       Ebean.save(postedReviewsInterest);
       return Boolean.TRUE;
     } else {
@@ -126,7 +116,14 @@ public class UserServiceImpl implements UserService {
     List<UserReviewsVO> output = Lists.newArrayList();
     if (reviews != null) {
       for (UserReviews review : reviews) {
-        UserReviewsVO vo = new UserReviewsVO(review);
+    	  int helpfulCount =  Ebean.find(PostedReviewsInterest.class).where().
+        		  eq("review_id", review.getReviewId()).
+        		  and(Expr.eq("email_id", review.getUser().getEmailId()), Expr.eq("helpful", 1)).findList().size();
+          
+          int notHelpfulCount = Ebean.find(PostedReviewsInterest.class).where().
+        		  eq("review_id", review.getReviewId()).
+        		  and(Expr.eq("email_id", review.getUser().getEmailId()), Expr.eq("helpful", 0)).findRowCount();
+        UserReviewsVO vo = new UserReviewsVO(review,helpfulCount,notHelpfulCount);
         output.add(vo);
       }
     }

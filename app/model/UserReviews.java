@@ -30,7 +30,6 @@ public class UserReviews extends Model {
   String reviewContent;
   String reviewTitle;
   boolean recommend;
-  List<PostedReviewsInterest> postedReviewsInterest;
 
   // String imageName;
   // byte[] imageData;
@@ -39,15 +38,6 @@ public class UserReviews extends Model {
   @JoinColumn(name = "email_id", referencedColumnName = "email_id", table = "user")
   public User getUser() {
     return user;
-  }
-
-  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "userReviews")
-  public List<PostedReviewsInterest> getPostedReviewsInterest() {
-    return postedReviewsInterest;
-  }
-
-  public void setPostedReviewsInterest(List<PostedReviewsInterest> postedReviewsInterest) {
-    this.postedReviewsInterest = postedReviewsInterest;
   }
 
   public void setUser(User user) {
