@@ -168,6 +168,12 @@
 	border-top: 1px solid transparent;
 }
 
+.review-by-div:last-child{
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	border-bottom: 1px solid transparent;
+}
+
 .review-by-div .product_div{
 	font-weight:bold;
 	font-size: 18px;
