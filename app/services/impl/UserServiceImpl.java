@@ -8,6 +8,7 @@ import model.PostedReviewsInterest;
 import model.ProductCategories;
 import model.User;
 import model.UserReviews;
+import model.VO.ImageVO;
 import model.VO.ProductTrendsVO;
 import model.VO.UserReviewsVO;
 import model.VO.UserTrendsVO;
@@ -230,5 +231,14 @@ public class UserServiceImpl implements UserService {
 		}
 
 		return output;
+	}
+
+	@Override
+	public ImageVO fetchReceipt(Integer reviewId) {
+		UserReviews review = Ebean.find(UserReviews.class).where().eq("review_id", reviewId).findUnique();
+		ImageVO imageVO = new ImageVO();
+		imageVO.setImageData(review.getImageData());
+		imageVO.setImageType(review.getImageType());
+		return imageVO;
 	}
 }

@@ -46,7 +46,7 @@ var ReviewView = Backbone.View.extend({
 							}
 							else{
 								$('.modal-title').html('Warning');
-								$('.modal-body p').html('Oops!!!! Seems like you have already marked for this post');
+								$('.modal-body').html('Oops!!!! Seems like you have already marked for this post');
 								$('.modal').modal({
 									keyboard: true,
 									show : true
@@ -54,6 +54,23 @@ var ReviewView = Backbone.View.extend({
 							}
 						}
 					})
+				});
+				
+				$('.viewReceipt_div a').click(function(){
+					var model = new ReviewModel();
+					model.url = '/fetchReceipt/'+$(this).parents('.review-by-div').attr('reviewid');
+					model.fetch({
+						success : function(model, response, options){
+							$('.modal-title').html('Receipt');
+							$('.modal-body').append('<img src="data:image/'+model.attributes.imageType+';base64,'+model.attributes.imageData+'"></img>');
+							$('.modal').modal({
+								keyboard: true,
+								show : true
+							});
+							
+						}
+					})
+					
 				})
 		}
 });

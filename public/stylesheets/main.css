@@ -255,6 +255,15 @@
 	background-color: #DEDEDE; 
 }
 
+.modal-body{
+	max-height: 30em;
+}
+
+.modal-body img{
+	max-width:100%;
+	max-height:100%;
+}
+
 
 
 

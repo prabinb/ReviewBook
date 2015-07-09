@@ -33,7 +33,7 @@ var PostReviewView = Backbone.View.extend({
 	        add: function (e, data) {
 	        	if(!data.files[0].type || data.files[0].type.indexOf('image') == -1){
 	        		$('.modal-title').html('Warning');
-					$('.modal-body p').html('Sorry !!! You can upload only image files of type png,jpeg,jpg etc... ');
+					$('.modal-body').html('Sorry !!! You can upload only image files of type png,jpeg,jpg etc... ');
 					$('.modal').modal({
 						keyboard: true,
 						show : true
@@ -45,7 +45,7 @@ var PostReviewView = Backbone.View.extend({
 	        },
 	        done: function (e, data) {
 	        	$('.modal-title').html('Information');
-				$('.modal-body p').html('Yipeeee!!!! You have submitted your review successfully');
+				$('.modal-body').html('Yipeeee!!!! You have submitted your review successfully');
 				$('.modal').modal({
 					keyboard: true,
 					show : true
@@ -54,7 +54,7 @@ var PostReviewView = Backbone.View.extend({
 	        },
 	        fail : function(){
 	        	$('.modal-title').html('Warning');
-				$('.modal-body p').html('Oops !! Error occured during submitting your review :( ');
+				$('.modal-body').html('Oops !! Error occured during submitting your review :( ');
 				$('.modal').modal({
 					keyboard: true,
 					show : true
@@ -69,7 +69,7 @@ var PostReviewView = Backbone.View.extend({
 	   			 $(this).parents('form').find('[required=true]').each(function(){
 	   				 if(!$(this).val()){
 	   					$('.modal-title').html('Warning!!');
-						$('.modal-body p').html('All the fields are mandatory.');
+						$('.modal-body').html('All the fields are mandatory.');
 						$('.modal').modal({
 							keyboard: true,
 							show : true
@@ -88,7 +88,7 @@ var PostReviewView = Backbone.View.extend({
 	   			 }
 	   			 else{
 	   				$('.modal-title').html('Warning!!');
-					$('.modal-body p').html('You need to upload your receipt or bill to post a review.');
+					$('.modal-body').html('You need to upload your receipt or bill to post a review.');
 					$('.modal').modal({
 						keyboard: true,
 						show : true

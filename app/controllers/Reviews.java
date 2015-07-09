@@ -107,5 +107,9 @@ public class Reviews extends Controller {
   public Result getReviewForCategory(Integer categoryId){
 	  return ok(Json.toJson(userService.getReviewForCategory(categoryId)));
   }
+  
+  public Result fetchReceipt(Integer reviewId){
+	  return ok(Json.toJson(userService.fetchReceipt(reviewId)));
+  }
 
 }

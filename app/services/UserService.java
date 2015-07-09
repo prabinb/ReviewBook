@@ -5,6 +5,7 @@ import java.util.List;
 import model.ProductCategories;
 import model.User;
 import model.UserReviews;
+import model.VO.ImageVO;
 import model.VO.ProductTrendsVO;
 import model.VO.UserReviewsVO;
 import model.VO.UserTrendsVO;
@@ -33,5 +34,7 @@ public interface UserService {
   public List<ProductCategories> listProductCategories();
   
   public List<UserReviewsVO> getReviewForCategory(int categoryId);
+
+  ImageVO fetchReceipt(Integer reviewId);
 
 }
