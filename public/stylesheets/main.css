@@ -26,7 +26,7 @@
 
 .logo{
 	cursor: pointer;
-	background: url("../images/review_book_logo.png") no-repeat scroll 0 0 transparent !important;
+	background: url("../images/review_book_logo.gif") no-repeat scroll 0 0 transparent !important;
 	background-repeat: no-repeat;
 	margin-left: 2em;
 }
