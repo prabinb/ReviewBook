@@ -16,6 +16,8 @@
   
 .headerSection {
 	padding-top: 1em;
+	background-color: #3a5795;
+	margin-bottom: 0px !important;
 }
 
 .headerSection div > .column {
@@ -44,6 +46,8 @@
 	outline: 0;
 	font-size: 20px;
 	border-bottom: 1px solid #dedede;
+	border-radius: 20px;
+  	width: 100%;
 }
 
 .search-Icon{
