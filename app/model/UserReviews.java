@@ -96,7 +96,7 @@ public class UserReviews extends Model {
 		this.imageType = imageType;
 	}
 
-	@Column(name = "image_data", columnDefinition="BLOB")
+	@Column(name = "image_data", columnDefinition="LONGBLOB")
 	public byte[] getImageData() {
 		return imageData;
 	}

@@ -3,6 +3,11 @@
     background: white url("../images/loading.gif") right center no-repeat;
 }
 
+.product_categories{
+	height: 40em;
+	overflow: auto;
+}
+
 .product_categories a {
 	cursor: pointer;	
 }
@@ -67,6 +72,7 @@
 	border-radius: 15px;
 	background-color: #f5f8fa;
 	 border-top: 1px solid blueviolet;
+	 overflow:hidden;
 }
  
 .lef_nav {
@@ -96,6 +102,15 @@
 .lef_nav div{
 	padding: 2em 0 2em 0;
 }
+
+
+.post-review-div {
+	background-color: white;
+	border-radius: 20px;
+	padding-top: 2em;
+	margin-top: 2em;
+}
+
 
 .post-review-div input{
 	border : 0px !important;
@@ -143,10 +158,14 @@
 
 .review-by-div{
   padding: 1em 0 1em 1em;
-  border: 1px solid #E1E900;
-  border-radius: 25px;
-  margin : 2em 0 0 0;
+  border-bottom: 1px solid #3a5795;
   background-color: white;
+}
+
+.review-by-div:first-child{
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	border-top: 1px solid transparent;
 }
 
 .review-by-div .product_div{
@@ -161,7 +180,7 @@
 }
 
 .review-by-div .review_name{
-	color: #dedede !important;
+	color: #800080!important;
   font-weight: normal !important;
   font-size: 14px !important;
   text-align: right !important;
@@ -171,32 +190,38 @@
 	width: 2em;
   height: 2em;
   background: url('../images/green_tick.png') no-repeat scroll 0 0 transparent;
-  background-size: 2em;
+  background-size: 1.5em;
+}
+
+.review-div-footer .column{
+	padding: 0 !important;
+	color: #428bca !important;
 }
 
 .trending_products {
-	border:1px solid #E1E900;
+	border:1px solid transparent;
 	background-color:white;
 	border-radius:10px;
 	margin : 2em 0 4em 0;
 	padding : 1em 0 1em 1em;
 	width : 95%;
+	overflow: auto;
 }
 
 .top_users{
 	width : 95%;
-	border:1px solid #E1E900;
+	border:1px solid transparent;
 	background-color:white;
 	border-radius:10px;
 	margin : 0 0 4em 0;
 	padding : 1em 0 0 1em;
+	overflow: auto;
 }
 
 .product_categories{
 	border:1px solid white;
 	background-color:white;
-	width : 95%;
-	min-height: 50em;
+	margin-top: 2em;
 }
 
 .product_categories ul{
@@ -207,7 +232,7 @@
 	width: 2em;
   height: 2em;
   background: url('../images/red_cross.png') no-repeat scroll 0 0 transparent;
-  background-size: 2em;
+  background-size: 1.5em;
 }
 
 .review-by-div .helpful_content_div a{
@@ -218,6 +243,9 @@
 
 .trending_reviews{
 	background-color: inherit;
+  	margin-top: 2em;
+  	overflow: auto;
+  	height: 40em;
 }
 
 .table-responsive tbody td,th {
@@ -276,9 +304,55 @@
 
 .modal-body img{
 	max-width:100%;
-	max-height:100%;
+	max-height:29em;
+}
+
+.trending_products::-webkit-scrollbar {
+    width: 1em;
+}
+
+.trending_reviews::-webkit-scrollbar {
+    width: 1em;
+}
+
+.top_users::-webkit-scrollbar {
+    width: 1em;
+}
+
+.trending_products::-webkit-scrollbar-thumb {
+  background-color: #3a5795;
+  height: 5px;
+  box-sizing: border-box;
+}
+
+.trending_reviews::-webkit-scrollbar-thumb {
+  background-color: #3a5795;
+  height: 5px;
+  box-sizing: border-box;
+}
+.top_users::-webkit-scrollbar-thumb {
+  background-color: #3a5795;
+  height: 5px;
+  box-sizing: border-box;
+}
+
+.trending_products ::-webkit-scrollbar-track {
+    background-color: #eaeaea;
+    border-left: 1px solid #ccc;
+}
+
+.trending_reviews::-webkit-scrollbar-track {
+    background-color: #eaeaea;
+    border-left: 1px solid #ccc;
 }
 
 
+.top_users::-webkit-scrollbar-track {
+    background-color: #eaeaea;
+    border-left: 1px solid #ccc;
+}
 
 
+body{
+	overflow-y: hidden;
+}

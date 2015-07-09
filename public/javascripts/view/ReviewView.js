@@ -62,7 +62,7 @@ var ReviewView = Backbone.View.extend({
 					model.fetch({
 						success : function(model, response, options){
 							$('.modal-title').html('Receipt');
-							$('.modal-body').append('<img src="data:image/'+model.attributes.imageType+';base64,'+model.attributes.imageData+'"></img>');
+							$('.modal-body').html('<img src="data:image/'+model.attributes.imageType+';base64,'+model.attributes.imageData+'"></img>');
 							$('.modal').modal({
 								keyboard: true,
 								show : true

@@ -31,7 +31,7 @@ create table user_reviews (
   review_title              varchar(255),
   is_recommended            tinyint(1) default 0,
   image_type                varchar(255),
-  image_data                BLOB,
+  image_data                LONGBLOB,
   posted_date               DATETIME,
   product_category_id       integer,
   constraint uq_user_reviews_1 unique (email_id,product_name),
