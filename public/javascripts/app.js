@@ -17,6 +17,8 @@ $(function(){
 				
 				el.find('a').click(function(){
 					var $this = $(this);
+					$this.addClass('selected');
+					$this.siblings().removeClass('selected');
 					$('body').mask('Loading..');
 					var userReviewModelList = new UserReviewModelList();
 					userReviewModelList.url = '/getReviewForCategory/'+$this.attr('categoryid');
