@@ -17,6 +17,7 @@ libraryDependencies ++= Seq(
   "org.apache.commons" % "commons-csv" % "1.0",
   "commons-collections" % "commons-collections" % "3.2.1",
   "org.apache.commons" % "commons-lang3" % "3.3.2",
+  "org.apache.commons" % "commons-io" % "1.3.2",
   "com.google.guava" % "guava" % "12.0"
 )
 javacOptions ++= Seq("-source", "1.8", "-target", "1.8", "-Xlint")

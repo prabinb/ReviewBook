@@ -109,6 +109,14 @@
 	background-color: transparent;
 }
 
+
+.post-review-div  input[type="file"]{
+	border-bottom : 0px !important;
+	float:  : left  !important;
+	width: 19%  !important;
+}
+
+
 .post-review-div label{
 	white-space: nowrap;
 }

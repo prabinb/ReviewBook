@@ -23,6 +23,8 @@ create table user_reviews (
   review_content            TEXT,
   review_title              varchar(255),
   is_recommended            tinyint(1) default 0,
+  image_type                varchar(255),
+  image_data                BLOB,
   constraint uq_user_reviews_1 unique (email_id,product_name),
   constraint pk_user_reviews primary key (review_id))
 ;

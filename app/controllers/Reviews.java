@@ -1,11 +1,18 @@
 package controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+
+import org.apache.commons.io.FilenameUtils;
+
 import model.User;
 import model.UserReviews;
 import model.form.UserReviewForm;
 import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
+import play.mvc.Http.MultipartFormData;
+import play.mvc.Http.MultipartFormData.FilePart;
 import play.mvc.Result;
 import services.UserService;
 import services.impl.UserServiceImpl;
@@ -19,19 +26,30 @@ public class Reviews extends Controller {
 
   public Result postReview() {
     Form<UserReviewForm> form = Form.form(UserReviewForm.class).bindFromRequest();
-    // FilePart filePart = request().body().asMultipartFormData().getFile("receipt");
     if (form.hasErrors()) {
       return badRequest(form.errorsAsJson());
     } else {
       UserReviewForm reviewForm = form.get();
       UserReviews review = reviewForm.getReview();
-      /*
-       * if (filePart != null) { File file = filePart.getFile();; byte[] imageData = new byte[(int)
-       * file.length()]; try { FileInputStream fileInputStream = new FileInputStream(file);
-       * fileInputStream.read(imageData); fileInputStream.close(); } catch (Exception e) {
-       * e.printStackTrace(); } review.setImageName(filePart.getFilename());
-       * review.setImageData(imageData); }
-       */
+      
+      MultipartFormData body = request().body().asMultipartFormData();
+      FilePart bill = body.getFile("bill");
+	  if (bill != null) {
+		byte[] bFile = new byte[(int) bill.getFile().length()];
+		FileInputStream fileInputStream=null;
+		try {
+			fileInputStream = new FileInputStream(bill.getFile());
+		    fileInputStream.read(bFile);
+		    fileInputStream.close();
+		}
+		catch(Exception ex){
+			
+		}
+		review.setImageData(bFile);
+		review.setImageType(FilenameUtils.getExtension(bill.getFilename()));
+	  } else {
+		return ok(Json.toJson(new APIResult("Could be some Problem while saving")));
+	  }
       if (userService.saveUserReview(review)) {
 
         return ok(Json.toJson(new APIResult("Saved  successfully.")));
