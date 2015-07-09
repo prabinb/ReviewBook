@@ -31,6 +31,7 @@ public class UserReviews extends Model {
 	String imageType;
 	byte[] imageData;
 	Date postedDate;
+	ProductCategories productCategory;
 
 	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "email_id", referencedColumnName = "email_id", table = "user")
@@ -111,6 +112,16 @@ public class UserReviews extends Model {
 
 	public void setPostedDate(Date postedDate) {
 		this.postedDate = postedDate;
+	}
+
+	@ManyToOne()
+	@JoinColumn(name = "product_category_id")
+	public ProductCategories getProductCategory() {
+		return productCategory;
+	}
+
+	public void setProductCategory(ProductCategories productCategory) {
+		this.productCategory = productCategory;
 	}
 
 }

@@ -2,6 +2,7 @@ package services;
 
 import java.util.List;
 
+import model.ProductCategories;
 import model.User;
 import model.UserReviews;
 import model.VO.ProductTrendsVO;
@@ -28,5 +29,9 @@ public interface UserService {
   List<UserReviewsVO> getAllReviews(String search);
 
   List<String> getProductSuggestions(String searchString);
+  
+  public List<ProductCategories> listProductCategories();
+  
+  public List<UserReviewsVO> getReviewForCategory(int categoryId);
 
 }

@@ -1,5 +1,6 @@
 package model.form;
 
+import model.ProductCategories;
 import model.User;
 import model.UserReviews;
 import play.data.validation.Constraints.Required;
@@ -17,6 +18,8 @@ public class UserReviewForm {
   private String emailId;
   @Required
   private String recommend;
+  @Required
+  private int productCategoryId;
 
   public String getEmailId() {
     return emailId;
@@ -66,7 +69,18 @@ public class UserReviewForm {
     review.setReviewContent(reviewContent);
     review.setReviewTitle(reviewTitle);
     review.setRecommend((recommend.toUpperCase().equals("TRUE")) ? true : false);
+    ProductCategories productCategory = new ProductCategories();
+    productCategory.setId(this.productCategoryId);
+    review.setProductCategory(productCategory);
     return review;
   }
+
+public int getProductCategoryId() {
+	return productCategoryId;
+}
+
+public void setProductCategoryId(int productCategoryId) {
+	this.productCategoryId = productCategoryId;
+}
 
 }

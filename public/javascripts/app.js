@@ -1,14 +1,46 @@
 $(function(){
 	bindEvents();
 	loadTrendingReviews();
+
+	var categories = new ProductCategoriesModelList();
+	categories.fetch({
+		success : function(model, response, options){
+			if(model.models && model.models.length>0){
+				var el = $('.product_categories');
+				for(var i=0;i<model.models.length;i++){
+					var $a = $('<a></a>');
+					$a.addClass('list-group-item');
+					$a.attr('categoryid',model.models[i].attributes.id);
+					$a.html(model.models[i].attributes.name);
+					el.append($a);
+				}
+				
+				el.find('a').click(function(){
+					var $this = $(this);
+					$('body').mask('Loading..');
+					var userReviewModelList = new UserReviewModelList();
+					userReviewModelList.url = '/getReviewForCategory/'+$this.attr('categoryid');
+					userReviewModelList.fetch({
+						success : function(model, response, options){
+							new ReviewView().renderReviews(model.models);
+							$('body').unmask();
+						}
+					});
+				});
+			}
+		}
+	})
+	
 });
 
 
 function loadTrendingReviews() {
 	var reviewModelList = new ReviewModelList();
+	$('body').mask('Loading..');
 	reviewModelList.fetch({
 		success : function(model, response, options){
 			new ReviewView().renderReviews(model.models);
+			$('body').unmask();
 		}
 	});
 	
@@ -30,22 +62,25 @@ function loadTrendingReviews() {
 }
 
 function searchReviews(searchString) {
-	resetNavigations();
+	$('body').mask('Loading..');
 	var searchreviewModelList = new SearchReviewModelList();
 	searchreviewModelList.url += '/' + searchString;
 	searchreviewModelList.fetch({
 		success : function(model, response, options){
 			new ReviewView().renderReviews(model.models);
+			$('body').unmask();
 		}
 	});
 }
 
 function loadUserReviews() {
+	$('body').mask('Loading..');
 	var userReviewModelList = new UserReviewModelList();
 	userReviewModelList.url += '/' + $('meta[name=userName]').attr("content");
 	userReviewModelList.fetch({
 		success : function(model, response, options){
 			new ReviewView().renderReviews(model.models);
+			$('body').unmask();
 		}
 	});
 }

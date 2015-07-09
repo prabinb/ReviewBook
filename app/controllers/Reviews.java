@@ -1,13 +1,13 @@
 package controllers;
 
-import java.io.File;
 import java.io.FileInputStream;
-
-import org.apache.commons.io.FilenameUtils;
 
 import model.User;
 import model.UserReviews;
 import model.form.UserReviewForm;
+
+import org.apache.commons.io.FilenameUtils;
+
 import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
@@ -98,6 +98,14 @@ public class Reviews extends Controller {
   
   public Result getProductSuggestions(String searchString){
 	  return ok(Json.toJson(userService.getProductSuggestions(searchString)));
+  }
+  
+  public Result listProductCategories(){
+	  return ok(Json.toJson(userService.listProductCategories()));
+  }
+  
+  public Result getReviewForCategory(Integer categoryId){
+	  return ok(Json.toJson(userService.getReviewForCategory(categoryId)));
   }
 
 }

@@ -11,7 +11,6 @@ var TrendingProductsView = Backbone.View.extend({
 			if(models && models.length>0){
 				for(var i=0;i<models.length;i++){
 					var tr = $('<tr></tr>');
-					tr.append('<td>'+(i+1)+'</td');
 					tr.append('<td>'+models[i].attributes.productName+'</td');
 					tr.append('<td>'+models[i].attributes.is_recommended+'</td');
 					tr.append('<td>'+(models[i].attributes.total_count - models[i].attributes.is_recommended)+'</td');
@@ -37,7 +36,6 @@ var TrendingUsersView = Backbone.View.extend({
 		if(models && models.length>0){
 			for(var i=0;i<models.length;i++){
 				var tr = $('<tr></tr>');
-				tr.append('<td>'+(i+1)+'</td');
 				tr.append('<td>'+models[i].attributes.full_name+'</td');
 				tr.append('<td>'+models[i].attributes.reviews_count+'</td');
 				tableBody.append(tr);

@@ -20,3 +20,5 @@ GET	  /searchReviews/:searchString	controllers.Reviews.searchReviews(searchStrin
 GET	  /trendingProducts					controllers.Reviews.trendingProducts()
 GET	  /trendingUsers					controllers.Reviews.trendingUsers()
 GET   /getProductSuggestions/:searchString			controllers.Reviews.getProductSuggestions(searchString:String)
+GET /listProductCategories          controllers.Reviews.listProductCategories()
+GET /getReviewForCategory/:categoryId   controllers.Reviews.getReviewForCategory(categoryId:Integer)

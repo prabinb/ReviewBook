@@ -17,6 +17,7 @@ public class UserReviewsVO {
 	int helpfulCount;
 	int notHelpfulCount;
 	Date postedDate;
+	int productCategoryId;
 
 	public UserReviewsVO(UserReviews userReviews, int helpfulCount,
 			int notHelpfulCount) {
@@ -30,6 +31,7 @@ public class UserReviewsVO {
 		this.helpfulCount = helpfulCount;
 		this.notHelpfulCount = notHelpfulCount;
 		this.postedDate = userReviews.getPostedDate();
+		this.productCategoryId = userReviews.getProductCategory().getId();
 	}
 
 	public int getReviewId() {
@@ -110,6 +112,14 @@ public class UserReviewsVO {
 
 	public void setPostedDate(Date postedDate) {
 		this.postedDate = postedDate;
+	}
+
+	public int getProductCategoryId() {
+		return productCategoryId;
+	}
+
+	public void setProductCategoryId(int productCategoryId) {
+		this.productCategoryId = productCategoryId;
 	}
 
 }

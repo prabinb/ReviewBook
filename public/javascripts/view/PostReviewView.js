@@ -16,6 +16,11 @@ var PostReviewView = Backbone.View.extend({
 
  function showPostReviewSection(){
 	 new PostReviewView().render();
+	 var category = $('form[name=post-review-form] select[name=productCategoryId]');
+	 $('.product_categories .list-group-item').each(function(){
+		 var $this = $(this);
+		 category.append('<option value="'+$this.attr('categoryid')+'" >'+$this.html()+'</option>')
+	 })
 	 bindPostReviewEvents();
 	 bindProductAutoSuggest();
  }

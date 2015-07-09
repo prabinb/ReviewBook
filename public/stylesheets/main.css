@@ -2,6 +2,11 @@
 .ui-autocomplete-loading {
     background: white url("../images/loading.gif") right center no-repeat;
 }
+
+.product_categories a {
+	cursor: pointer;	
+}
+
 .ui-widget-content{
 	border : 1px solid #E1E900 !important;
 	padding-top: 1.5em !important;
@@ -55,9 +60,9 @@
 }
 
 .MainBody{
-	padding-top: 2em;
 	border-radius: 15px;
 	background-color: #f5f8fa;
+	 border-top: 1px solid blueviolet;
 }
  
 .lef_nav {
@@ -95,6 +100,13 @@
 	 width: 60%;
 	 background-color: transparent;
 }
+
+.post-review-div select{
+	background-color: transparent;
+	font-size: 16px;
+	height: 2em;
+}
+
 .post-review-div textarea{
 	border : 0px !important;
 	border-bottom: 1px solid;
@@ -113,7 +125,7 @@
 .post-review-div  input[type="file"]{
 	border-bottom : 0px !important;
 	float:  : left  !important;
-	width: 19%  !important;
+	width: 21%  !important;
 }
 
 
@@ -174,6 +186,17 @@
 	border-radius:10px;
 	margin : 0 0 4em 0;
 	padding : 1em 0 0 1em;
+}
+
+.product_categories{
+	border:1px solid white;
+	background-color:white;
+	width : 95%;
+	min-height: 50em;
+}
+
+.product_categories ul{
+	list-style: none;
 }
 
 .review-by-div .not-recommended-div{
