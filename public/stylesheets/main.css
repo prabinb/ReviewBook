@@ -228,6 +228,12 @@
 	border:1px solid white;
 	background-color:white;
 	margin-top: 2em;
+	border-top-left-radius: 20px;
+  	border-top-right-radius: 20px;
+}
+
+.product_categories h4{
+	text-align: center;
 }
 
 .product_categories ul{
