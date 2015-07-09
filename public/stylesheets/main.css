@@ -21,7 +21,7 @@
 }
 
 .headerSection div > .column {
-	height: 2em;
+	height: 3em;
 }
 
 .logo{
@@ -238,7 +238,18 @@
   left: 1.5em;
   top: 0.5em;
   display: block;
-  color: #ADDAE6;
+  color: white;
+}
+
+.signInSignOutContainer .userName{
+	color: white;
+	top: 1em;
+	position: relative;
+	padding-left: 1em;
+}
+
+.caret{
+	border-top : white !important;
 }
 
 .header_navbar .post{
