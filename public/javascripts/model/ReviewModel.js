@@ -1,51 +1,45 @@
 var ReviewModel = Backbone.Model.extend({
+	urlRoot : '/allReviews',
 	  defaults: {
 		  emailId: '',
 		  fullName : '',
 		  productName : '',
 		  reviewContent : '',
-		  title : ''
+		  title : '',
+		  pageIndex : 0
 		}
 });
 
-var ReviewModelList = Backbone.Collection.extend({
-	url: '/allReviews',
-    model:  ReviewModel
-});
 
 
 
 var SearchReviewModel = Backbone.Model.extend({
+	urlRoot : '/searchReviews',
 	  defaults: {
 		  emailId: '',
 		  fullName : '',
 		  productName : '',
 		  reviewContent : '',
-		  title : ''
+		  title : '',
+		  pageIndex : 0
 		}
 });
 
-var SearchReviewModelList = Backbone.Collection.extend({
-	url: '/searchReviews',
-  model:  SearchReviewModel
-});
 
 
 
 var UserReviewModel = Backbone.Model.extend({
+	urlRoot : '/getAllUserReviews',
 	  defaults: {
 		  emailId: '',
 		  fullName : '',
 		  productName : '',
 		  reviewContent : '',
-		  title : ''
+		  title : '',
+		  pageIndex : 0
 		}
 });
 
-var UserReviewModelList = Backbone.Collection.extend({
-	url: '/getAllUserReviews',
-  model:  UserReviewModel
-});
 
 
 var UsefulReviewModel = Backbone.Model.extend({

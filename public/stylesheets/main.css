@@ -253,10 +253,11 @@
 	border:1px solid transparent;
 	background-color:white;
 	border-radius:10px;
-	margin : 2em 0 4em 0;
+	margin : 2em 0 2em 0;
 	padding : 1em 0 1em 1em;
 	width : 95%;
 	overflow: auto;
+	height: 20em;
 }
 
 .top_users{
@@ -267,6 +268,7 @@
 	margin : 0 0 4em 0;
 	padding : 1em 0 0 1em;
 	overflow: auto;
+	height: 20em;
 }
 
 .product_categories{

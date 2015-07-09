@@ -59,7 +59,7 @@ public class Reviews extends Controller {
     }
   }
 
-  public Result getAllUserReviews(String emailId) {
+  public Result getAllUserReviews(String emailId,Integer startIndex) {
     if (emailId == null) {
       return badRequest("Invalid User");
     }
@@ -67,7 +67,7 @@ public class Reviews extends Controller {
     if (user == null) {
       return badRequest("Invalid User");
     }
-    return ok(Json.toJson(userService.getAllUserReviews(emailId)));
+    return ok(Json.toJson(userService.getAllUserReviews(emailId,startIndex)));
   }
 
   public Result getAllProductReviews(String productName) {
@@ -77,12 +77,12 @@ public class Reviews extends Controller {
     return ok(Json.toJson(userService.getAllProductReviews(productName)));
   }
 
-  public Result getAllReviews() {
-    return ok(Json.toJson(userService.getAllReviews("")));
+  public Result getAllReviews(Integer startIndex) {
+    return ok(Json.toJson(userService.getAllReviews("",startIndex)));
   }
 
-  public Result searchReviews(String searchString) {
-    return ok(Json.toJson(userService.getAllReviews(searchString)));
+  public Result searchReviews(String searchString,Integer startIndex) {
+    return ok(Json.toJson(userService.getAllReviews(searchString,startIndex)));
   }
 
 
@@ -104,8 +104,8 @@ public class Reviews extends Controller {
 	  return ok(Json.toJson(userService.listProductCategories()));
   }
   
-  public Result getReviewForCategory(Integer categoryId){
-	  return ok(Json.toJson(userService.getReviewForCategory(categoryId)));
+  public Result getReviewForCategory(Integer categoryId,Integer startIndex){
+	  return ok(Json.toJson(userService.getReviewForCategory(categoryId,startIndex)));
   }
   
   public Result fetchReceipt(Integer reviewId){
