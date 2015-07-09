@@ -17,7 +17,8 @@ var ReviewView = Backbone.View.extend({
 							notRecommendVisible : models[i].attributes.recommend ? 'none' : 'block',
 							reviewId: models[i].attributes.reviewId,
 							helpful : models[i].attributes.helpfulCount,
-							notHelpful : models[i].attributes.notHelpfulCount
+							notHelpful : models[i].attributes.notHelpfulCount,
+							postedDate : $.datepicker.formatDate( "dd-MM-yy", new Date(models[i].attributes.postedDate))
 					}
 					self.$el.append(self.trending_reviews_template(values));
 				}

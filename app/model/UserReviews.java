@@ -1,16 +1,14 @@
 package model;
 
-import java.util.List;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -32,6 +30,7 @@ public class UserReviews extends Model {
 	boolean recommend;
 	String imageType;
 	byte[] imageData;
+	Date postedDate;
 
 	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "email_id", referencedColumnName = "email_id", table = "user")
@@ -103,6 +102,15 @@ public class UserReviews extends Model {
 
 	public void setImageData(byte[] imageData) {
 		this.imageData = imageData;
+	}
+
+	@Column(name="posted_date",columnDefinition="DATETIME")
+	public Date getPostedDate() {
+		return postedDate;
+	}
+
+	public void setPostedDate(Date postedDate) {
+		this.postedDate = postedDate;
 	}
 
 }

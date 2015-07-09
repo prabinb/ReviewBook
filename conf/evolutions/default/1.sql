@@ -25,6 +25,7 @@ create table user_reviews (
   is_recommended            tinyint(1) default 0,
   image_type                varchar(255),
   image_data                BLOB,
+  posted_date               DATETIME,
   constraint uq_user_reviews_1 unique (email_id,product_name),
   constraint pk_user_reviews primary key (review_id))
 ;

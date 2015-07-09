@@ -1,5 +1,6 @@
 package model.VO;
 
+import java.util.Date;
 import java.util.List;
 
 import model.PostedReviewsInterest;
@@ -15,6 +16,7 @@ public class UserReviewsVO {
 	boolean recommend;
 	int helpfulCount;
 	int notHelpfulCount;
+	Date postedDate;
 
 	public UserReviewsVO(UserReviews userReviews, int helpfulCount,
 			int notHelpfulCount) {
@@ -27,6 +29,7 @@ public class UserReviewsVO {
 		this.recommend = userReviews.isRecommend();
 		this.helpfulCount = helpfulCount;
 		this.notHelpfulCount = notHelpfulCount;
+		this.postedDate = userReviews.getPostedDate();
 	}
 
 	public int getReviewId() {
@@ -99,6 +102,14 @@ public class UserReviewsVO {
 
 	public void setNotHelpfulCount(int notHelpfulCount) {
 		this.notHelpfulCount = notHelpfulCount;
+	}
+
+	public Date getPostedDate() {
+		return postedDate;
+	}
+
+	public void setPostedDate(Date postedDate) {
+		this.postedDate = postedDate;
 	}
 
 }

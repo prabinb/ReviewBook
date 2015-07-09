@@ -1,6 +1,7 @@
 package services.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import model.PostedReviewsInterest;
@@ -37,7 +38,7 @@ public class UserServiceImpl implements UserService {
   @Override
   public List<UserReviewsVO> getAllUserReviews(String emailId) {
     List<UserReviews> reviews =
-        Ebean.find(UserReviews.class).where().eq("email_id", emailId).findList();
+        Ebean.find(UserReviews.class).where().eq("email_id", emailId).order().desc("posted_date").findList();
     List<UserReviewsVO> output = Lists.newArrayList();
     for (UserReviews review : reviews) {
       int helpfulCount = Ebean.find(PostedReviewsInterest.class).where().
@@ -57,7 +58,7 @@ public class UserServiceImpl implements UserService {
   @Override
   public List<UserReviewsVO> getAllProductReviews(String getAllProductReviews) {
     List<UserReviews> reviews =
-        Ebean.find(UserReviews.class).where().ilike("product_name", getAllProductReviews)
+        Ebean.find(UserReviews.class).where().ilike("product_name", getAllProductReviews).order().desc("posted_date")
             .findList();
     List<UserReviewsVO> output = Lists.newArrayList();
     for (UserReviews review : reviews) {
@@ -76,6 +77,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public boolean saveUserReview(UserReviews reviews) {
+	reviews.setPostedDate(new Date());
     reviews.save();
     return true;
   }
@@ -105,12 +107,12 @@ public class UserServiceImpl implements UserService {
   public List<UserReviewsVO> getAllReviews(String search) {
     List<UserReviews> reviews = null;
     if (StringUtils.isEmpty(search)) {
-      reviews = Ebean.find(UserReviews.class).findList();
+      reviews = Ebean.find(UserReviews.class).order().desc("posted_date").findList();
     } else {
       search += '%';
       reviews =
           Ebean.find(UserReviews.class).where()
-              .or(Expr.like("review_title", search), Expr.like("product_name", search)).findList();
+              .or(Expr.like("review_title", search), Expr.like("product_name", search)).order().desc("posted_date").findList();
 
     }
     List<UserReviewsVO> output = Lists.newArrayList();
