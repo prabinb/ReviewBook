@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/bootstrap.css")">
 <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/jquery.loadmask.css")">
 <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/jquery-ui.css")">
+<link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/jquey.scrollbar.min.css")">
 </head>
 <body>
 	
@@ -72,14 +73,16 @@
         		</div>
         	</div>
         	<div class="column col-sm-6 trending_reviews"> </div>
-        	<div class="column col-sm-4" > 
-        		<div class="trending_products" >
-        			<h4> Trending Products </h4>
-        		</div>
-        		
-        		<div class="top_users">
-        			<h4> Top Users </h4>
-        		</div>
+        	<div class="column col-sm-4" style="overflow:auto;"> 
+        		<div class="product_users_div">
+					<div class="trending_products" >
+						<h4> Trending Products </h4>
+					</div>
+
+					<div class="top_users">
+						<h4> Top Users </h4>
+					</div>
+				</div>
         	</div>
         </div>
         
@@ -290,6 +293,7 @@
         <script src="@routes.Assets.versioned("javascripts/node_modules/jquery/plugin/jquery.iframe-transport.js")"></script>
         <script src="@routes.Assets.versioned("javascripts/node_modules/jquery/plugin/jquery.loadmask.min.js")"></script>
         <script src="@routes.Assets.versioned("javascripts/node_modules/jquery/plugin/jquery-ui.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/node_modules/jquery/plugin/jquery.scrollbar.min.js")"></script>
         <script src="@routes.Assets.versioned("javascripts/node_modules/underscore/underscore.js")"></script>
         <script src="@routes.Assets.versioned("javascripts/node_modules/backbone/backbone.js")"></script>
         

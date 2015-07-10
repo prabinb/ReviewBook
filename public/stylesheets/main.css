@@ -256,8 +256,7 @@
 	margin : 2em 0 2em 0;
 	padding : 1em 0 1em 1em;
 	width : 95%;
-	overflow: auto;
-	height: 20em;
+	overflow: hidden;
 }
 
 .top_users{
@@ -267,8 +266,14 @@
 	border-radius:10px;
 	margin : 0 0 4em 0;
 	padding : 1em 0 0 1em;
+	overflow: hidden;
+}
+
+.product_users_div{
+	height: 40em;
 	overflow: auto;
-	height: 20em;
+	width: 90%;
+	margin-top: 2em;
 }
 
 .product_categories{
@@ -303,7 +308,7 @@
 .trending_reviews{
 	background-color: inherit;
   	margin-top: 2em;
-  	overflow: auto;
+  	overflow-y: auto;
   	height: 40em;
 }
 
@@ -366,51 +371,36 @@
 	max-height:29em;
 }
 
-.trending_products::-webkit-scrollbar {
-    width: 1em;
+.product_users_div::-webkit-scrollbar {
+    width: .5em;
 }
 
-.trending_reviews::-webkit-scrollbar {
-    width: 1em;
-}
 
-.top_users::-webkit-scrollbar {
-    width: 1em;
-}
-
-.trending_products::-webkit-scrollbar-thumb {
+.product_users_div::-webkit-scrollbar-thumb {
   background-color: #3a5795;
   height: 5px;
   box-sizing: border-box;
 }
+
+.product_users_div ::-webkit-scrollbar-track {
+    background-color: #FFFFFF;
+    border-left: 1px solid #ccc;
+}
+
+.trending_reviews::-webkit-scrollbar {
+    width: .5em;
+}
+
 
 .trending_reviews::-webkit-scrollbar-thumb {
   background-color: #3a5795;
   height: 5px;
   box-sizing: border-box;
 }
-.top_users::-webkit-scrollbar-thumb {
-  background-color: #3a5795;
-  height: 5px;
-  box-sizing: border-box;
-}
-
-.trending_products ::-webkit-scrollbar-track {
-    background-color: #eaeaea;
-    border-left: 1px solid #ccc;
-}
-
 .trending_reviews::-webkit-scrollbar-track {
-    background-color: #eaeaea;
+    background-color: #FFFFFF;
     border-left: 1px solid #ccc;
 }
-
-
-.top_users::-webkit-scrollbar-track {
-    background-color: #eaeaea;
-    border-left: 1px solid #ccc;
-}
-
 
 body{
 	overflow-y: hidden;

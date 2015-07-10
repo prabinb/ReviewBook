@@ -37,6 +37,7 @@ $(function(){
 
 
 function loadTrendingReviews() {
+	$('.product_categories a').removeClass('selected')
 	var reviewModel = new ReviewModel();
 	$('body').mask('Loading..');
 	reviewModel.urlRoot +='/0';
@@ -67,7 +68,7 @@ function loadTrendingReviews() {
 function nextPage(){
 	var url = $('.trending_reviews').attr('url');
 	var split = url.split('/');
-	split[split.length -1 ] = parseInt(split[split.length -1 ]) + 1;
+	split[split.length -1 ] = (parseInt(split[split.length -1 ]) + 1)*20;
 	var reviewModel = new ReviewModel();
 	$('body').mask('Loading..');
 	reviewModel.urlRoot = split.join('/');

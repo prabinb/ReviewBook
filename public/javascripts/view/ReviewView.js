@@ -39,7 +39,9 @@ var ReviewView = Backbone.View.extend({
 					else{
 						self.$el.unbind('scroll');
 					}
-					
+					if( startIndex == 0){
+						self.$el.scrollTop(0);
+					}
 			}
 			else{
 				self.$el.append(' <br> <br> No Reviews Avaiable');
