@@ -45,7 +45,7 @@
         			<div class="column col-sm-3 header_navbar"> 
         					<div class="row">
         						<div class="column col-sm-3 home" onclick="javascript:loadTrendingReviews()"> <span> Home </span></div>
-        						<div class="column col-sm-3 post" onclick="javascript:showPostReviewSection()"> <span> Post </span></div>
+        						<div class="column col-sm-3 post" onclick="javascript:showPostReviewSection()" style="display:none;"> <span> Post </span></div>
         					</div>
         			</div>
         			<div class="column col-sm-2 signInSignOutContainer">
@@ -245,6 +245,7 @@
                 			signInSignOutContainer.find('.signout-container').css('display','block');
                 			signInSignOutContainer.find('.signout-container > .image').css('background-image', 'url(' + profile.getImageUrl() + ')');
                 			signInSignOutContainer.find('.signout-container .userName').html('Hi, '+profile.getName().split(" ")[0]);
+                			$('.header_navbar .post').show();
                 		},
                 		error : function(){
                 			alert(' :( Failed to Login. Please check your credentials and try again :)');
@@ -260,6 +261,7 @@
 				      	var signInSignOutContainer = $('.signInSignOutContainer');
 				      	signInSignOutContainer.find('#my-signin2').show();
                 		signInSignOutContainer.find('.signout-container').hide();
+                		$('.header_navbar .post').hide();
 				    });
 				    loadTrendingReviews();
                 }
