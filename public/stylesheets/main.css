@@ -6,6 +6,7 @@
 .product_categories{
 	height: 40em;
 	overflow: auto;
+	  padding-top: 2em;
 }
 
 .product_categories a {
@@ -14,8 +15,9 @@
 
 .product_categories  a.selected{
 	font-weight: bold;
-  	border-right: 2px solid #3a5795;
-  	color: #3a5795;
+  border-right: 2px solid orange;
+  color: #fff;
+  background-color: #3a5795;
 }
 
 

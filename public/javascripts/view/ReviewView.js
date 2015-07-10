@@ -69,7 +69,7 @@ var ReviewView = Backbone.View.extend({
 							}
 							else{
 								$('.modal-title').html('Warning');
-								$('.modal-body').html('Oops!!!! Seems like you have already marked for this post');
+								$('.modal-body').html('Oops!!!! Seems like you have already made an opinion on this review');
 								$('.modal').modal({
 									keyboard: true,
 									show : true
