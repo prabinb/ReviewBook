@@ -12,11 +12,41 @@
 	cursor: pointer;	
 }
 
+.product_categories  a.selected{
+	font-weight: bold;
+  	border-right: 2px solid #3a5795;
+  	color: #3a5795;
+}
+
+
 .ui-widget-content{
-	border : 1px solid #E1E900 !important;
-	padding-top: 1.5em !important;
-	font-size: 14px !important;
-  	font-style: italic !important;
+	border: 0 !important;
+  padding-top: 0 !important;
+  font-size: 14px !important;
+  font-style: italic !important;
+  background-color: white !important;
+  padding-left: 0 !important;
+}
+
+.ui-autocomplete li{
+  position: relative !important;
+  display: block !important;
+  padding: 10px 15px !important;
+  margin-bottom: -1px !important;
+  background-color: #fff !important;
+  border: 1px solid #ddd !important;
+}
+
+.ui-autocomplete li :first-child{
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+}
+
+.ui-autocomplete li:hover{
+	background-color: #3a5795 !important;
+	color: #fff !important;
+	border-right: #3A5795;
+	border-left: #3A5795;
 }
   
 .headerSection {
@@ -47,12 +77,14 @@
 }
 
 .suggest_product{
-	border: 0;
-	outline: 0;
-	font-size: 20px;
-	border-bottom: 1px solid #dedede;
-	border-radius: 20px;
-  	width: 100%;
+  border: 0 !important;
+  outline: 0 !important;
+  font-size: 20px;
+  border-bottom: 1px solid #dedede !important;
+  border-radius: 20px !important;
+  width: 100%;
+  padding-left: 2em;
+  padding-right: 2em;
 }
 
 .search-Icon{
@@ -70,7 +102,7 @@
 
 .MainBody{
 	border-radius: 15px;
-	background-color: #f5f8fa;
+	background-color: #F0F8FF;
 	 border-top: 1px solid blueviolet;
 	 overflow:hidden;
 }
@@ -109,18 +141,20 @@
 	border-radius: 20px;
 	padding-top: 2em;
 	margin-top: 2em;
+	border: 1px solid black;
+	padding-bottom:  2em;
 }
 
 
 .post-review-div input{
 	border : 0px !important;
-	border-bottom: 1px solid !important;
-	font-size: 16px;
+	font-size: 14px;
 	 width: 60%;
 	 background-color: transparent;
 }
 
 .post-review-div select{
+	border : 0px !important;
 	background-color: transparent;
 	font-size: 16px;
 	height: 2em;
@@ -128,7 +162,6 @@
 
 .post-review-div textarea{
 	border : 0px !important;
-	border-bottom: 1px solid;
 	font-size: 16px;
 	 width: 60%;
 	 height: 4em;
@@ -139,6 +172,17 @@
 	height: 1em;
 	background-color: transparent;
 }
+
+.post-review-div .even_form_group{
+	background-color: white;
+  	margin: 0px !important;
+}
+
+.post-review-div .odd_form_group{
+	background-color: aliceblue;
+    margin: 0px !important;
+}
+
 
 
 .post-review-div  input[type="file"]{
@@ -190,6 +234,7 @@
   font-weight: normal !important;
   font-size: 14px !important;
   text-align: right !important;
+    padding-right: 2em !important;
 }
 
 .review-by-div .recommended-div{
@@ -208,10 +253,11 @@
 	border:1px solid transparent;
 	background-color:white;
 	border-radius:10px;
-	margin : 2em 0 4em 0;
+	margin : 2em 0 2em 0;
 	padding : 1em 0 1em 1em;
 	width : 95%;
 	overflow: auto;
+	height: 20em;
 }
 
 .top_users{
@@ -222,6 +268,7 @@
 	margin : 0 0 4em 0;
 	padding : 1em 0 0 1em;
 	overflow: auto;
+	height: 20em;
 }
 
 .product_categories{
@@ -307,7 +354,7 @@
 }
 
 .header_navbar .post:hover,.header_navbar .home:hover{
-	background-color: #DEDEDE; 
+	font-size: 16px;
 }
 
 .modal-body{

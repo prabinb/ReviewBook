@@ -11,6 +11,7 @@ import model.UserReviews;
 import model.VO.ImageVO;
 import model.VO.ProductTrendsVO;
 import model.VO.UserReviewsVO;
+import model.VO.UserReviewsWrapperVO;
 import model.VO.UserTrendsVO;
 import model.form.PostedReviewsInterestForm;
 
@@ -38,9 +39,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<UserReviewsVO> getAllUserReviews(String emailId) {
+	public UserReviewsWrapperVO getAllUserReviews(String emailId,int startIndex) {
 		List<UserReviews> reviews = Ebean.find(UserReviews.class).where()
-				.eq("email_id", emailId).order().desc("posted_date").findList();
+				.eq("email_id", emailId).order().desc("posted_date").setFirstRow(startIndex).setMaxRows(10).findList();
+		int totalCount = Ebean.find(UserReviews.class).where().eq("email_id", emailId).order().desc("posted_date").findRowCount();
 		List<UserReviewsVO> output = Lists.newArrayList();
 		for (UserReviews review : reviews) {
 			int helpfulCount = Ebean
@@ -61,14 +63,17 @@ public class UserServiceImpl implements UserService {
 			output.add(vo);
 		}
 
-		return output;
+		return new UserReviewsWrapperVO(totalCount,output);
 	}
 
 	@Override
-	public List<UserReviewsVO> getAllProductReviews(String getAllProductReviews) {
+	public UserReviewsWrapperVO getAllProductReviews(String getAllProductReviews) {
 		List<UserReviews> reviews = Ebean.find(UserReviews.class).where()
 				.ilike("product_name", getAllProductReviews).order()
 				.desc("posted_date").findList();
+		int totalCount = Ebean.find(UserReviews.class).where()
+				.ilike("product_name", getAllProductReviews).order()
+				.desc("posted_date").findRowCount();
 		List<UserReviewsVO> output = Lists.newArrayList();
 		for (UserReviews review : reviews) {
 			int helpfulCount = Ebean
@@ -88,7 +93,7 @@ public class UserServiceImpl implements UserService {
 					notHelpfulCount);
 			output.add(vo);
 		}
-		return output;
+		return new UserReviewsWrapperVO(totalCount,output);
 	}
 
 	@Override
@@ -126,11 +131,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<UserReviewsVO> getAllReviews(String search) {
+	public UserReviewsWrapperVO getAllReviews(String search,int startIndex) {
 		List<UserReviews> reviews = null;
+		int totalCount;
 		if (StringUtils.isEmpty(search)) {
-			reviews = Ebean.find(UserReviews.class).order().desc("posted_date")
+			reviews = Ebean.find(UserReviews.class).order().desc("posted_date").setFirstRow(startIndex).setMaxRows(10)
 					.findList();
+			totalCount = Ebean.find(UserReviews.class).order().desc("posted_date").findRowCount();
 		} else {
 			search += '%';
 			reviews = Ebean
@@ -138,7 +145,13 @@ public class UserServiceImpl implements UserService {
 					.where()
 					.or(Expr.like("review_title", search),
 							Expr.like("product_name", search)).order()
-					.desc("posted_date").findList();
+					.desc("posted_date").setFirstRow(startIndex).setMaxRows(10).findList();
+			totalCount = Ebean
+					.find(UserReviews.class)
+					.where()
+					.or(Expr.like("review_title", search),
+							Expr.like("product_name", search)).order()
+					.desc("posted_date").findRowCount();
 
 		}
 		List<UserReviewsVO> output = Lists.newArrayList();
@@ -162,17 +175,17 @@ public class UserServiceImpl implements UserService {
 				output.add(vo);
 			}
 		}
-		return output;
+		return new UserReviewsWrapperVO(totalCount,output);
 	}
 
 	@Override
 	public List<ProductTrendsVO> getTrendingProducts() {
-		String sql = " select product_name, sum(is_recommended) as is_recommended, count(*) as total_count "
+		String sql = " select product_name, sum(is_recommended) as is_recommended, count(1) as total_count "
 				+ " from user_reviews " + " group by product_name ";
 
 		RawSql rawSql = RawSqlBuilder.parse(sql).create();
 		Query<ProductTrendsVO> query = Ebean.find(ProductTrendsVO.class);
-		query.setRawSql(rawSql).order().desc("is_recommended").setMaxRows(4);
+		query.setRawSql(rawSql).order().desc("is_recommended").order().desc("total_count").setMaxRows(4);
 		List<ProductTrendsVO> output = query.findList();
 		return output;
 	}
@@ -207,9 +220,11 @@ public class UserServiceImpl implements UserService {
 		return Ebean.find(ProductCategories.class).findList();
 	}
 	
-	public List<UserReviewsVO> getReviewForCategory(int categoryId){
+	public UserReviewsWrapperVO getReviewForCategory(int categoryId,int startIndex){
 		List<UserReviews> reviews = Ebean.find(UserReviews.class).where()
-				.eq("product_category_id", categoryId).order().desc("posted_date").findList();
+				.eq("product_category_id", categoryId).order().desc("posted_date").setFirstRow(startIndex).setMaxRows(10).findList();
+		int totalCount = Ebean.find(UserReviews.class).where()
+				.eq("product_category_id", categoryId).order().desc("posted_date").findRowCount();
 		List<UserReviewsVO> output = Lists.newArrayList();
 		for (UserReviews review : reviews) {
 			int helpfulCount = Ebean
@@ -230,11 +245,11 @@ public class UserServiceImpl implements UserService {
 			output.add(vo);
 		}
 
-		return output;
+		return new UserReviewsWrapperVO(totalCount,output);
 	}
 
 	@Override
-	public ImageVO fetchReceipt(Integer reviewId) {
+	public ImageVO fetchReceipt(int reviewId) {
 		UserReviews review = Ebean.find(UserReviews.class).where().eq("review_id", reviewId).findUnique();
 		ImageVO imageVO = new ImageVO();
 		imageVO.setImageData(review.getImageData());

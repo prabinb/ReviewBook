@@ -17,12 +17,14 @@ $(function(){
 				
 				el.find('a').click(function(){
 					var $this = $(this);
+					$this.addClass('selected');
+					$this.siblings().removeClass('selected');
 					$('body').mask('Loading..');
-					var userReviewModelList = new UserReviewModelList();
-					userReviewModelList.url = '/getReviewForCategory/'+$this.attr('categoryid');
-					userReviewModelList.fetch({
+					var userReviewModel = new UserReviewModel();
+					userReviewModel.urlRoot = '/getReviewForCategory/'+$this.attr('categoryid')+'/0';
+					userReviewModel.fetch({
 						success : function(model, response, options){
-							new ReviewView().renderReviews(model.models);
+							new ReviewView().renderReviews(model);
 							$('body').unmask();
 						}
 					});
@@ -35,11 +37,12 @@ $(function(){
 
 
 function loadTrendingReviews() {
-	var reviewModelList = new ReviewModelList();
+	var reviewModel = new ReviewModel();
 	$('body').mask('Loading..');
-	reviewModelList.fetch({
+	reviewModel.urlRoot +='/0';
+	reviewModel.fetch({
 		success : function(model, response, options){
-			new ReviewView().renderReviews(model.models);
+			new ReviewView().renderReviews(model);
 			$('body').unmask();
 		}
 	});
@@ -61,13 +64,28 @@ function loadTrendingReviews() {
 	});
 }
 
+function nextPage(){
+	var url = $('.trending_reviews').attr('url');
+	var split = url.split('/');
+	split[split.length -1 ] = parseInt(split[split.length -1 ]) + 1;
+	var reviewModel = new ReviewModel();
+	$('body').mask('Loading..');
+	reviewModel.urlRoot = split.join('/');
+	reviewModel.fetch({
+		success : function(model, response, options){
+			new ReviewView().renderReviews(model);
+			$('body').unmask();
+		}
+	});
+}
+
 function searchReviews(searchString) {
 	$('body').mask('Loading..');
-	var searchreviewModelList = new SearchReviewModelList();
-	searchreviewModelList.url += '/' + searchString;
-	searchreviewModelList.fetch({
+	var searchreviewModel = new SearchReviewModel();
+	searchreviewModel.urlRoot += '/' + searchString +'/0';
+	searchreviewModel.fetch({
 		success : function(model, response, options){
-			new ReviewView().renderReviews(model.models);
+			new ReviewView().renderReviews(model);
 			$('body').unmask();
 		}
 	});
@@ -75,11 +93,11 @@ function searchReviews(searchString) {
 
 function loadUserReviews() {
 	$('body').mask('Loading..');
-	var userReviewModelList = new UserReviewModelList();
-	userReviewModelList.url += '/' + $('meta[name=userName]').attr("content");
-	userReviewModelList.fetch({
+	var userReviewModel = new UserReviewModel();
+	userReviewModel.urlRoot += '/' + $('meta[name=userName]').attr("content")+'/0';
+	userReviewModel.fetch({
 		success : function(model, response, options){
-			new ReviewView().renderReviews(model.models);
+			new ReviewView().renderReviews(model);
 			$('body').unmask();
 		}
 	});

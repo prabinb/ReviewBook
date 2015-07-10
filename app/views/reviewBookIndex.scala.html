@@ -40,7 +40,7 @@
         			</div>
         			<div class="column col-sm-4 search_bar"> 
         					<!-- <div class="search-Icon"> </div> -->
-        					<input class="suggest_product" type="text" placeholder="    Search Reviews" >
+        					<input class="suggest_product" type="text" placeholder="Search Reviews" >
         			</div>
         			<div class="column col-sm-3 header_navbar"> 
         					<div class="row">
@@ -120,18 +120,17 @@
             <div class="review-by-div" reviewid="<%= reviewId %>">
             	<br>
             	<div class="row product_div" style="display:block;">
-            		<div class="column col-sm-4"> <%= reviewItem %></div>
-            		<div class="column col-sm-3"> </div>
-            		<div class="column col-sm-4 review_name"> <%= reviewBy %></div>
+            		<div class="column col-sm-9"> <%= reviewItem %></div>
+            		<div class="column col-sm-3 review_name"> <%= reviewBy %></div>
             	</div>
             	
             	<div class="row product_div" style="display:block;">
-            		<div class="column col-sm-7"> </div>
-            		<div class="column col-sm-4 review_name"> <%= postedDate %></div>
+            		<div class="column col-sm-9"> </div>
+            		<div class="column col-sm-3 review_name"> <%= postedDate %></div>
             	</div>
             	<br>
             	<div class="row" style="display:block;">
-            		<div class="column col-sm-4 review_heading_div"> <%= reviewHeading %></div>
+            		<div class="column col-sm-12 review_heading_div"> <%= reviewHeading %></div>
             	</div>
             	
                 <br>
@@ -172,35 +171,35 @@
         <script type="text/template" id="post-review-template">
             <div class="post-review-div">
             	<form class="form-horizontal" name="post-review-form" method="post"  action="postReview" encrtype="multipart/form-data">
-            		<div class="form-group">
+            		<div class="form-group even_form_group">
             			<label class="control-label col-sm-3" for="title">Title:</label>
 					    <div class="col-sm-9">
 					      <input type="text" required=true name="reviewTitle" placeholder="Enter Title of your review"/>
 					    </div>
             		</div>
             		
-            		<div class="form-group">
+            		<div class="form-group odd_form_group">
             			<label class="control-label col-sm-3" for="productName">Product Category:</label>
 					    <div class="col-sm-9">
 					      <select  type="text" name="productCategoryId" required=true class="" placeholder="Enter the Category under which the product comes"/>
 					    </div>
             		</div>
             		
-            		<div class="form-group">
+            		<div class="form-group even_form_group">
             			<label class="control-label col-sm-3" for="productName">Product Name:</label>
 					    <div class="col-sm-9">
 					      <input type="text" name="productName" required=true class="" placeholder="Enter product name of which yoou wish to review"/>
 					    </div>
             		</div>
             		
-            		<div class="form-group">
+            		<div class="form-group odd_form_group">
             			<label class="control-label col-sm-3" for="comments">Comments:</label>
 					    <div class="col-sm-9">
 					      <textarea type="text" name="reviewContent" required=true placeholder="Enter Your Valuable Comments"/>
 					    </div>
             		</div>
             		
-					<div class="form-group">
+					<div class="form-group even_form_group">
 						<label class="control-label col-sm-3" for="bill">Upload Receipt:</label>
 						<div class="col-sm-9">
 						  <input id="uploadBill" type="file" name="bill"/>
@@ -209,7 +208,7 @@
 					</div>
 					
             		
-            		<div class="form-group radio">
+            		<div class="form-group radio odd_form_group">
             			<div class="col-sm-3" style="display:block;"> </div>
 						<div class="col-sm-1">
 							<input type="radio" name="recommend" checked="checked" value="true">
@@ -224,12 +223,14 @@
             		
             		<input type="hidden" name="emailId" value="<%= emailId %>"/>
             		
-            		<div class="form-group"> 
+            		<div class="form-group even_form_group"> 
     					<div class="col-sm-offset-3">
      					 <div class="btn btn-default">Submit</div>
     					</div>
   					</div>
  	           	</form>
+ 	           	
+ 	           	<br><br>
             </div>
         </script>
         
@@ -245,7 +246,7 @@
                 			signInSignOutContainer.find('#my-signin2').css('display','none');
                 			signInSignOutContainer.find('.signout-container').css('display','block');
                 			signInSignOutContainer.find('.signout-container > .image').css('background-image', 'url(' + profile.getImageUrl() + ')');
-                			signInSignOutContainer.find('.signout-container .userName').html('HI, '+profile.getName().split(" ")[0]);
+                			signInSignOutContainer.find('.signout-container .userName').html('Hi, '+profile.getName().split(" ")[0]);
                 		},
                 		error : function(){
                 			alert(' :( Failed to Login. Please check your credentials and try again :)');
