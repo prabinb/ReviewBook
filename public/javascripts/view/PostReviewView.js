@@ -9,6 +9,7 @@ var PostReviewView = Backbone.View.extend({
 			var self = this;
 			self.$el.empty();
 			self.$el.append(self.post_reviews_template({emailId:$('meta[name=userName]').attr("content")}));
+			self.$el.unbind('scroll');
 		}
 });
 
