@@ -2,7 +2,12 @@ package controllers;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -10,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.zip.GZIPInputStream;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -37,17 +43,21 @@ public class LoadData extends Controller {
 
   private static String USER_AGENT = "Mozilla/5.0";
   private static int fileCount = 1;
-  private static String fileLocation = "/home/prabinb/workspace_java_8/XMLParser/data/xml";
+  private static String xmlFileLocation = "/home/prabinb/workspace_java_8/XMLParser/data/xml";
+  private static String gzFileLocation =
+      "/home/prabinb/workspace_java_8/XMLParser/data/zipped_files";
   private static int productIdCount = 1;
 
-  public Result LoadReviewData() throws IOException {
-    /*
-     * List<String> listOfLinks = parseFlipkartSitesXML(); for (String url : listOfLinks) {
-     * sendGet(url, ".xml.gz"); }
-     */
+  public Result LoadReviewData() throws Exception {
+
+    List<String> listOfLinks = parseFlipkartSitesXML();
+    for (String url : listOfLinks) {
+      sendGet(url);
+    }
 
 
-    Files.walk(Paths.get(fileLocation)).forEach(filePath -> {
+
+    Files.walk(Paths.get(xmlFileLocation)).forEach(filePath -> {
       if (Files.isRegularFile(filePath)) {
         /* System.out.println(filePath); */
         List<String> productURLs = parseFlipkartProductListXML(filePath.toString());
@@ -184,5 +194,76 @@ public class LoadData extends Controller {
       // user.save();
       userReviews.save();
     }
+  }
+
+  private List<String> parseFlipkartSitesXML() {
+    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+    DocumentBuilder builder;
+    List<String> result = new ArrayList<String>();
+    try {
+      builder = factory.newDocumentBuilder();
+      Document document;
+      document =
+          ((DocumentBuilder) builder).parse(new FileInputStream(
+              "/home/prabinb/workspace_java_8/XMLParser/data/flipkart_sitesmap.xml"));
+      Element docEle = document.getDocumentElement();
+      docEle.normalize();
+      System.out.println("Root Element:" + docEle.getNodeName());
+      NodeList nodeList = document.getElementsByTagName("loc");
+
+      for (int i = 0; i < nodeList.getLength(); i++) {
+        Node n = (Node) nodeList.item(i);
+        System.out.println("Node Name: " + n.getNodeName());
+        System.out.println("Node text: " + n.getTextContent());
+        result.add(n.getTextContent());
+      }
+    } catch (ParserConfigurationException | SAXException | IOException e) {
+      e.printStackTrace();
+    }
+    return result;
+  }
+
+
+  private void sendGet(String url) throws Exception {
+    URL obj = new URL(url);
+    String name = url.substring(url.lastIndexOf('/') + 1);
+    HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
+    // optional default is GET
+    connection.setRequestMethod("GET");
+    // add request header
+    connection.setRequestProperty("User-Agent", USER_AGENT);
+    int responseCode = connection.getResponseCode();
+    System.out.println("\nSending 'GET' request to URL : " + url);
+    System.out.println("Response Code : " + responseCode);
+    String fileName = gzFileLocation + name;
+    InputStream in = connection.getInputStream();
+    FileOutputStream fos = new FileOutputStream(new File(fileName));
+    byte[] buffer = new byte[8092];
+    int length;
+    while ((length = in.read(buffer)) > 0) {
+      fos.write(buffer, 0, length);
+    }
+    fos.close();
+
+    if ((fileName.trim().substring(fileName.length() - 2)).equals("gz")) {
+      gunzip(fileName);
+    }
+  }
+
+  private void gunzip(String fileName) throws FileNotFoundException, IOException {
+    byte[] buffer = new byte[8092];
+    GZIPInputStream gzis = new GZIPInputStream(new FileInputStream(fileName));
+    fileName = fileName.trim();
+    String name = fileName.substring(fileName.lastIndexOf('/'), fileName.length() - 3);
+
+    String fileNameNew = xmlFileLocation + name;
+    FileOutputStream fos1 = new FileOutputStream(fileNameNew);
+    int len;
+    while ((len = gzis.read(buffer)) > 0) {
+      fos1.write(buffer, 0, len);
+    }
+    gzis.close();
+    fos1.close();
+    fileCount++;
   }
 }
